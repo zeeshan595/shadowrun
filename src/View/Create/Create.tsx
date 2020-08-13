@@ -11,7 +11,8 @@ import {
   MagicTradition,
 } from "../../Model/Magic";
 import { Race, MetaType } from "../../Model/MetaType";
-import { Qualities } from "./Elements/Qualities";
+import { QualitiesTable } from "./Elements/QualitiesTable";
+import { Quality, Qualities } from "../../Model/Quality";
 
 export interface ICreateProps {}
 
@@ -25,6 +26,7 @@ export interface ICreateState {
   };
   race: Race;
   magic: Magic;
+  qualities: Quality[];
 }
 
 export class Create extends React.Component<ICreateProps, ICreateState> {
@@ -45,6 +47,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
         MagicSkillLimit: MagicSkills.None,
         Adept: 0,
       },
+      qualities: [],
     };
   }
 
@@ -64,6 +67,37 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       ...this.state,
       priorities: currentPriority,
     });
+  }
+
+  updateMetatype(race: Race) {
+    const defaultQualities: Quality[] = [];
+    if (race == Race.Dwarf) {
+      defaultQualities.push({
+        ...Qualities.find((q) => q.Name === "Toxin Resistance"),
+        IsLocked: true,
+      });
+    }
+    if (race == Race.Dwarf || race == Race.Troll) {
+      defaultQualities.push({
+        ...Qualities.find((q) => q.Name === "Thermographic Vision"),
+        IsLocked: true,
+      });
+    }
+    if (race == Race.Elf || race == Race.Ork) {
+      defaultQualities.push({
+        ...Qualities.find((q) => q.Name === "Low-Light Vision"),
+        IsLocked: true,
+      });
+    }
+    if (race == Race.Ork || race == Race.Troll) {
+      const lockedValue = race === Race.Ork ? 1 : 2;
+      defaultQualities.push({
+        ...Qualities.find((q) => q.Name === "Built Tough"),
+        IsLocked: true,
+        LockedValue: lockedValue,
+      });
+    }
+    this.setState({ ...this.state, race: race, qualities: defaultQualities });
   }
 
   getMetaType(priority: PriorityType): MetaType {
@@ -133,15 +167,13 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
   render() {
     return (
       <div>
-        <h2>Choose your priorities</h2>
         <PriorityTable
           updatePriority={(key, value) => this.updatePriority(key, value)}
           priorities={this.state.priorities}
         />
-        <h2>Select a metatype</h2>
         <RaceSelection
           races={this.getMetaType(this.state.priorities.metaType).Races}
-          updateRace={(value) => this.setState({ ...this.state, race: value })}
+          updateRace={(value) => this.updateMetatype(value)}
           value={this.state.race}
         />
         <MagicTable
@@ -154,7 +186,15 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
             })
           }
         />
-        <Qualities />
+        <QualitiesTable
+          selectedQualities={this.state.qualities}
+          updateQualities={(q) =>
+            this.setState({
+              ...this.state,
+              qualities: q,
+            })
+          }
+        />
       </div>
     );
   }

@@ -5,6 +5,7 @@ import {
   Magic,
   MagicSkills,
 } from "../../../Model/Magic";
+import { printpretty } from "./General";
 
 export interface IMagicTableProps {
   magic: Magic;
@@ -85,17 +86,6 @@ export class MagicTable extends React.Component<
     </span>,
   ];
 
-  printpretty(val: string): string {
-    return (
-      val
-        .replace(/([A-Z])/g, " $1")
-        // uppercase the first character
-        .replace(/^./, function (str) {
-          return str.toUpperCase();
-        })
-    );
-  }
-
   render() {
     if (this.props.magicAmount <= 0) return null;
     const magictype = [];
@@ -116,7 +106,6 @@ export class MagicTable extends React.Component<
         <div>
           <h4>Select the magic tradition to cast your spell</h4>
           <select
-            className="custom-select"
             value={this.props.magic.Tradition}
             onChange={(evt) =>
               this.props.updateMagic({
@@ -138,7 +127,6 @@ export class MagicTable extends React.Component<
         <div>
           <h4>Select the magic skill you are limited to</h4>
           <select
-            className="custom-select"
             value={this.props.magic.MagicSkillLimit}
             onChange={(evt) =>
               this.props.updateMagic({
@@ -225,7 +213,7 @@ export class MagicTable extends React.Component<
           <div className="magic">
             {magictype.map((type: string, index) => (
               <label key={index} className="checkmarkContainer">
-                {this.printpretty(type)}
+                {printpretty(type)}
                 <input
                   type="radio"
                   name="magic"

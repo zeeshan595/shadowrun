@@ -223,6 +223,7 @@ export class RaceSelection extends React.Component<
 
     return (
       <div>
+        <h2>Select a metatype</h2>
         <div className="raceSelection">
           {this.props.races.map((race, index) => (
             <label key={index} className="checkmarkContainer">
