@@ -149,9 +149,8 @@ export const Qualities: Quality[] = [
           better than the best in a particular skill.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Your skill maximum for the selected skill is 10, instead of 9, and
-          your maximum starting rank is 7, instead of 6.
+          <b>Game Effect:</b> Your skill maximum for the selected skill is 10,
+          instead of 9, and your maximum starting rank is 7, instead of 6.
         </p>
       </div>
     ),
@@ -170,10 +169,9 @@ export const Qualities: Quality[] = [
           to identify and read your aura and astral signature.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Characters receive –2 dice on tests to recognize your aura or astral
-          signature. Your astral signature fades in half the normal time (see p.
-          159).
+          <b>Game Effect:</b> Characters receive –2 dice on tests to recognize
+          your aura or astral signature. Your astral signature fades in half the
+          normal time (see p. 159).
         </p>
       </div>
     ),
@@ -190,14 +188,14 @@ export const Qualities: Quality[] = [
           all about you tends to stand out, and that can be extremely useful.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Characters take a –2 penalty on Memory tests (p. 67) to remember if
-          they have seen you before, and the threshold on tests to notice if you
-          are following or observing them is increased by 1. If the character
-          acquires something permanent and distinctive—obvious, unusual
-          cyberware, a unique tattoo, that sort of thing—they lose this quality.
-          If they acquire something temporarily distinctive, such as an extreme
-          hairdo, the effects are negated until those changes are reversed.
+          <b>Game Effect:</b> Characters take a –2 penalty on Memory tests (p.
+          67) to remember if they have seen you before, and the threshold on
+          tests to notice if you are following or observing them is increased by
+          1. If the character acquires something permanent and
+          distinctive—obvious, unusual cyberware, a unique tattoo, that sort of
+          thing—they lose this quality. If they acquire something temporarily
+          distinctive, such as an extreme hairdo, the effects are negated until
+          those changes are reversed.
         </p>
       </div>
     ),
@@ -213,9 +211,8 @@ export const Qualities: Quality[] = [
           few extra hits before the lights go out.
         </p>
         <p>
-          <b>Game Effect:</b>
-          You have a number of additional boxes on your Physical Condition
-          Monitor equal to the rank of this quality.
+          <b>Game Effect:</b> You have a number of additional boxes on your
+          Physical Condition Monitor equal to the rank of this quality.
         </p>
       </div>
     ),
@@ -234,9 +231,9 @@ export const Qualities: Quality[] = [
           on your feet—literally, if not figuratively.
         </p>
         <p>
-          <b>Game Effect:</b>
-          You gain a bonus Edge on all tests for balance, falling, and landing
-          safely. Note the rules in the Preventing Edge Abuse section, p. 45.
+          <b>Game Effect:</b> You gain a bonus Edge on all tests for balance,
+          falling, and landing safely. Note the rules in the Preventing Edge
+          Abuse section, p. 45.
         </p>
       </div>
     ),
@@ -251,10 +248,9 @@ export const Qualities: Quality[] = [
           You have calciferous deposits growing on or through your flesh, making
           you tougher and a little rough around the edges. Literally
         </p>
-        <b>Game Effect:</b>
         <p>
-          You gain 1 level of natural Armor. Your Unarmed Melee attacks have a
-          Base Damage Value of [(STR/2) + 1]P.
+          <b>Game Effect:</b> You gain 1 level of natural Armor. Your Unarmed
+          Melee attacks have a Base Damage Value of [(STR/2) + 1]P.
         </p>
       </div>
     ),
@@ -274,11 +270,10 @@ export const Qualities: Quality[] = [
           turning your shoulders, just to name a few of your neatest party
           tricks.
         </p>
-        <b>Game Effect:</b>
         <p>
-          You gain a bonus Edge on all tests involving grappling, escaping
-          bonds, flexibility, or fitting into tight spaces. Note the rules on
-          Preventing Edge Abuse, p. 45.
+          <b>Game Effect:</b> You gain a bonus Edge on all tests involving
+          grappling, escaping bonds, flexibility, or fitting into tight spaces.
+          Note the rules on Preventing Edge Abuse, p. 45.
         </p>
       </div>
     ),
@@ -295,11 +290,10 @@ export const Qualities: Quality[] = [
           in the case of cold).
         </p>
         <p>
-          <b>Game Effect:</b>
-          When choosing this quality, select an elemental form of damage (p.
-          109). When attacked with a weapon or spell (including unarmed combat
-          by a spirit) that does this form of damage, gain a point of Edge
-          before making your Defense test.
+          <b>Game Effect:</b> When choosing this quality, select an elemental
+          form of damage (p. 109). When attacked with a weapon or spell
+          (including unarmed combat by a spirit) that does this form of damage,
+          gain a point of Edge before making your Defense test.
         </p>
       </div>
     ),
@@ -318,11 +312,11 @@ export const Qualities: Quality[] = [
           selling coal in Newcastle, or making a cat look clumsy, you’re just
           naturally built to be better.
         </p>
-        <b>Game Effect:</b>
         <p>
-          Select a Physical or Mental attribute. The character’s attribute
-          maximum (but not current rank) for the chosen attribute increases by 1
-          to a maximum of 10. This quality can only be purchased once.
+          <b>Game Effect:</b> Select a Physical or Mental attribute. The
+          character’s attribute maximum (but not current rank) for the chosen
+          attribute increases by 1 to a maximum of 10. This quality can only be
+          purchased once.
         </p>
       </div>
     ),
@@ -340,11 +334,10 @@ export const Qualities: Quality[] = [
           meeting. Your wit, charm, and subtle flattery put everyone you meet
           off their guard and let you make the most of a first encounter.
         </p>
-        <b>Game Effect:</b>
         <p>
-          You gain 2 Edge for Social Tests during your first meeting with
-          anyone, and both your Heat and Reputation are ignored for this first
-          encounter.
+          <b>Game Effect:</b> You gain 2 Edge for Social Tests during your first
+          meeting with anyone, and both your Heat and Reputation are ignored for
+          this first encounter.
         </p>
       </div>
     ),
@@ -359,12 +352,11 @@ export const Qualities: Quality[] = [
           You know how to compartmentalize your mind and keep hold of arcane and
           emergent manipulations without straining yourself.
         </p>
-        <b>Game Effect:</b>
         <p>
-          You can sustain multiple spells or complex forms without penalty. For
-          each level, you can sustain 1 additional spell or complex form without
-          suffering the associated penalty. The spell cannot have a modified
-          Drain Value of 7 or greater.
+          <b>Game Effect:</b> You can sustain multiple spells or complex forms
+          without penalty. For each level, you can sustain 1 additional spell or
+          complex form without suffering the associated penalty. The spell
+          cannot have a modified Drain Value of 7 or greater.
         </p>
       </div>
     ),
@@ -381,10 +373,9 @@ export const Qualities: Quality[] = [
           If it’s meant to move but currently isn’t moving so well, you know how
           to get it back into tip-top shape in a jiffy.
         </p>
-        <b>Game Effect:</b>
         <p>
-          You gain an Edge on Repair tests for any vehicle and can spend Edge
-          during downtime to make Extended Repair tests
+          <b>Game Effect:</b> You gain an Edge on Repair tests for any vehicle
+          and can spend Edge during downtime to make Extended Repair tests
         </p>
       </div>
     ),
@@ -400,10 +391,9 @@ export const Qualities: Quality[] = [
           the most intimidating opponents and hold your tongue under the
           toughest interrogations.
         </p>
-        <b>Game Effect:</b>
         <p>
-          You gain an Edge when resisting Intimidation or effects that cause the
-          Frightened status.
+          <b>Game Effect:</b> You gain an Edge when resisting Intimidation or
+          effects that cause the Frightened status.
         </p>
       </div>
     ),
@@ -420,13 +410,12 @@ export const Qualities: Quality[] = [
           actually helps absorb some of the injuries coming at your Matrix
           persona.
         </p>
-        <b>Game Effect:</b>
         <p>
-          You gain a bonus Edge when making Matrix Damage Resistance tests. If
-          you do not use that point of Edge immediately on the Damage Resistance
-          test, it goes away. When struck by any damage in the Matrix, you can
-          convert up to two boxes to Stun Damage, rather than Matrix damage,
-          protecting your persona at the cost of yourself.
+          <b>Game Effect:</b> You gain a bonus Edge when making Matrix Damage
+          Resistance tests. If you do not use that point of Edge immediately on
+          the Damage Resistance test, it goes away. When struck by any damage in
+          the Matrix, you can convert up to two boxes to Stun Damage, rather
+          than Matrix damage, protecting your persona at the cost of yourself.
         </p>
       </div>
     ),
@@ -442,9 +431,9 @@ export const Qualities: Quality[] = [
           with congenital analgesia. Either way, you don’t suffer the ill
           effects of injury and pain like others. Cost: 7 Karma
         </p>
-        <b>Game Effect:</b>
         <p>
-          When wounded, reduce your wound penalty by one (to a minimum of 0).
+          <b>Game Effect:</b> When wounded, reduce your wound penalty by one (to
+          a minimum of 0).
         </p>
       </div>
     ),
@@ -463,12 +452,11 @@ export const Qualities: Quality[] = [
           countless hours in the code, you know its gremlins, its quirks, the
           local avatars, and the ones that are out of place.
         </p>
-        <b>Game Effect:</b>
         <p>
-          Select a neighborhood or Matrix host each time you take this quality.
-          Outdoors and Perception tests made in your Home Ground gain an Edge
-          for use on that test; if you do not use the Edge on that test, it goes
-          away.
+          <b>Game Effect:</b> Select a neighborhood or Matrix host each time you
+          take this quality. Outdoors and Perception tests made in your Home
+          Ground gain an Edge for use on that test; if you do not use the Edge
+          on that test, it goes away.
         </p>
       </div>
     ),
@@ -490,9 +478,9 @@ export const Qualities: Quality[] = [
           help with humans or cause obstacles with non-humans.
         </p>
         <p>
-          <b>Game Effect:</b>
-          You generally appear human at first glance and gain +2 dice on
-          Disguise tests to hide your metatype and appear more human.
+          <b>Game Effect:</b> You generally appear human at first glance and
+          gain +2 dice on Disguise tests to hide your metatype and appear more
+          human.
         </p>
       </div>
     ),
@@ -530,9 +518,9 @@ export const Qualities: Quality[] = [
           even if only briefly.
         </p>
         <p>
-          <b>Game Effect:</b>
-          When performing a Juryrigging test (see p. 95), you gain a point of
-          Edge that must be spent on that test, or it goes away.
+          <b>Game Effect:</b> When performing a Juryrigging test (see p. 95),
+          you gain a point of Edge that must be spent on that test, or it goes
+          away.
         </p>
       </div>
     ),
@@ -548,10 +536,9 @@ export const Qualities: Quality[] = [
           physical grace, you are able to reach people with melee weapons easier
           than others.
         </p>
-        <b>Game Effect:</b>
         <p>
-          When you are using a melee weapon, Close range is extended to 5 meters
-          instead of 3.
+          <b>Game Effect:</b> When you are using a melee weapon, Close range is
+          extended to 5 meters instead of 3.
         </p>
       </div>
     ),
@@ -568,10 +555,9 @@ export const Qualities: Quality[] = [
           enhances the light level of incoming data, you are capable of
           operating in light levels that would leave others essentially blind.
         </p>
-        <b>Game Effect:</b>
         <p>
-          You can see clearly in any light level that is not total darkness (see
-          Environment and Visibility, p. 118).
+          <b>Game Effect:</b> You can see clearly in any light level that is not
+          total darkness (see Environment and Visibility, p. 118).
         </p>
       </div>
     ),
@@ -590,12 +576,11 @@ export const Qualities: Quality[] = [
           fireball trying to cook you alive, or a healing spell trying to mend
           your wounds, it’s just harder to get magic to work on you.{" "}
         </p>
-        <b>Game Effect:</b>
         <p>
-          You gain a bonus Edge for use on any Magic Resistance test; if you do
-          not use it on that test, that point goes away. When a Health spell is
-          cast on you, treat your Essence as if it were 2 points lower than it
-          actually is.
+          <b>Game Effect:</b> You gain a bonus Edge for use on any Magic
+          Resistance test; if you do not use it on that test, that point goes
+          away. When a Health spell is cast on you, treat your Essence as if it
+          were 2 points lower than it actually is.
         </p>
       </div>
     ),
@@ -612,12 +597,11 @@ export const Qualities: Quality[] = [
           totem of Wolf, the Norse god Loki, or the Christian God, you utilize
           your beliefs to shape and focus your arcane abilities more easily
         </p>
-        <b>Game Effect:</b>
         <p>
-          You gain the benefits listed with the description of your mentor
-          spirit (see p. 162). If you fail to keep aligned with one of those
-          tenets, you lose your faith and connection to your mentor and all
-          associated bonuses.
+          <b>Game Effect:</b> You gain the benefits listed with the description
+          of your mentor spirit (see p. 162). If you fail to keep aligned with
+          one of those tenets, you lose your faith and connection to your mentor
+          and all associated bonuses.
         </p>
       </div>
     ),
@@ -634,10 +618,10 @@ export const Qualities: Quality[] = [
           has made you great for trivia night and remembering the favorite color
           of your childhood friend.
         </p>
-        <b>Game Effect:</b>
         <p>
-          You gain a bonus Edge point when making a Memory test (p. 67). If you
-          do not use this point of Edge on the test, it goes away.
+          <b>Game Effect:</b> You gain a bonus Edge point when making a Memory
+          test (p. 67). If you do not use this point of Edge on the test, it
+          goes away.
         </p>
       </div>
     ),
@@ -653,11 +637,10 @@ export const Qualities: Quality[] = [
           incredibly valuable in a profession that is all about putting your
           body on the line.
         </p>
-        <b>Game Effect:</b>
         <p>
-          Cut the interval for any natural healing test (p. 120) in half,
-          meaning you can heal Stun Damage after half an hour and Physical
-          Damage after half a day
+          <b>Game Effect:</b> Cut the interval for any natural healing test (p.
+          120) in half, meaning you can heal Stun Damage after half an hour and
+          Physical Damage after half a day
         </p>
       </div>
     ),
@@ -674,10 +657,10 @@ export const Qualities: Quality[] = [
           has mastered the art of fighting off any and all comers that try to
           slip into your body and make you sick.
         </p>
-        <b>Game Effect:</b>
         <p>
-          You gain a bonus point of Edge when you make a Pathogen Resistance
-          test. If you do not use it on that test, it goes away.
+          <b>Game Effect:</b> You gain a bonus point of Edge when you make a
+          Pathogen Resistance test. If you do not use it on that test, it goes
+          away.
         </p>
       </div>
     ),
@@ -693,12 +676,12 @@ export const Qualities: Quality[] = [
           Through actions and favors, you’ve gained a positive reputation that
           makes them treat you with extra consideration.
         </p>
-        <b>Game Effect:</b>
         <p>
-          When selecting this quality, choose a type of spirit or sprite. You
-          gain a bonus point of Edge when making a Conjuring or Tasking test for
-          your chosen class of spirits/sprites. This quality can be taken
-          multiple times, selecting a new class of spirits/sprites each time.
+          <b>Game Effect:</b> When selecting this quality, choose a type of
+          spirit or sprite. You gain a bonus point of Edge when making a
+          Conjuring or Tasking test for your chosen class of spirits/sprites.
+          This quality can be taken multiple times, selecting a new class of
+          spirits/sprites each time.
         </p>
       </div>
     ),
@@ -716,12 +699,12 @@ export const Qualities: Quality[] = [
           Through actions and favors, you’ve gained a positive reputation that
           makes them treat you with extra consideration.
         </p>
-        <b>Game Effect:</b>
         <p>
-          When selecting this quality, choose a type of spirit or sprite. You
-          gain a bonus point of Edge when making a Conjuring or Tasking test for
-          your chosen class of spirits/sprites. This quality can be taken
-          multiple times, selecting a new class of spirits/sprites each time.
+          <b>Game Effect:</b> When selecting this quality, choose a type of
+          spirit or sprite. You gain a bonus point of Edge when making a
+          Conjuring or Tasking test for your chosen class of spirits/sprites.
+          This quality can be taken multiple times, selecting a new class of
+          spirits/sprites each time.
         </p>
       </div>
     ),
@@ -742,11 +725,10 @@ export const Qualities: Quality[] = [
           something giving off that much heat is also giving off light, so your
           regular vision takes over.
         </p>
-        <b>Game Effect:</b>
         <p>
-          You can see the heat of objects in total darkness (assuming they are
-          warmer or colder than the ambient temperature), allowing you to
-          operate in such conditions.
+          <b>Game Effect:</b> You can see the heat of objects in total darkness
+          (assuming they are warmer or colder than the ambient temperature),
+          allowing you to operate in such conditions.
         </p>
       </div>
     ),
@@ -762,10 +744,9 @@ export const Qualities: Quality[] = [
           injury, or you’re just one tough bastard, you can take a bit more of a
           beating and shrug off the injuries better than most.
         </p>
-        <b>Game Effect:</b>
         <p>
-          You gain a bonus point of Edge when making Damage Resistance tests. If
-          you do not use it on the test, it goes away.
+          <b>Game Effect:</b> You gain a bonus point of Edge when making Damage
+          Resistance tests. If you do not use it on the test, it goes away.
         </p>
       </div>
     ),
@@ -781,10 +762,10 @@ export const Qualities: Quality[] = [
           bit by a snake on a dai- ly basis is a fun way to pass the time,
           you’re able to better resist the effects of toxins in the Sixth World.{" "}
         </p>
-        <b>Game Effect:</b>
         <p>
-          You gain a bonus point of Edge when you make a Toxin Resistance test
-          (p. 121). If you do not use it on that test, it goes away.
+          <b>Game Effect:</b> You gain a bonus point of Edge when you make a
+          Toxin Resistance test (p. 121). If you do not use it on that test, it
+          goes away.
         </p>
       </div>
     ),
@@ -803,9 +784,8 @@ export const Qualities: Quality[] = [
           all.
         </p>
         <p>
-          <b>Game Effect:</b>
-          For every rank of this quality you possess, you gain two additional
-          Damage Overflow boxes (see p. 121).
+          <b>Game Effect:</b> For every rank of this quality you possess, you
+          gain two additional Damage Overflow boxes (see p. 121).
         </p>
       </div>
     ),
@@ -828,13 +808,12 @@ export const Qualities: Quality[] = [
           a need for something better-than-life, but whatever it is, it’s got a
           firm grip on you.
         </p>
-        <b>Game Effect:</b>
         <p>
-          You cannot earn Edge or spend Edge in any form while suffering
-          withdrawal. Withdrawal times (the time that passes before you need
-          your next hit) and requirements are based on the level of addiction
-          and can be found on the Addiction Withdrawal table. When in
-          withdrawal, take a –2 dicepool penalty on all tests; increase that
+          <b>Game Effect:</b> You cannot earn Edge or spend Edge in any form
+          while suffering withdrawal. Withdrawal times (the time that passes
+          before you need your next hit) and requirements are based on the level
+          of addiction and can be found on the Addiction Withdrawal table. When
+          in withdrawal, take a –2 dicepool penalty on all tests; increase that
           penalty by 1 each time you pass another Withdrawal time period.
         </p>
       </div>
@@ -857,10 +836,9 @@ export const Qualities: Quality[] = [
           substance found in the Sixth World.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Select an allergen and severity to determine Karma value. You cannot
-          spend or earn Edge while exposed to your allergen. You also suffer
-          secondary effects, which are listed below.
+          <b>Game Effect:</b> Select an allergen and severity to determine Karma
+          value. You cannot spend or earn Edge while exposed to your allergen.
+          You also suffer secondary effects, which are listed below.
         </p>
       </div>
     ),
@@ -880,10 +858,9 @@ export const Qualities: Quality[] = [
           substance found in the Sixth World.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Select an allergen and severity to determine Karma value. You cannot
-          spend or earn Edge while exposed to your allergen. You also suffer
-          secondary effects, which are listed below.
+          <b>Game Effect:</b> Select an allergen and severity to determine Karma
+          value. You cannot spend or earn Edge while exposed to your allergen.
+          You also suffer secondary effects, which are listed below.
         </p>
       </div>
     ),
@@ -903,10 +880,9 @@ export const Qualities: Quality[] = [
           substance found in the Sixth World.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Select an allergen and severity to determine Karma value. You cannot
-          spend or earn Edge while exposed to your allergen. You also suffer
-          secondary effects, which are listed below.
+          <b>Game Effect:</b> Select an allergen and severity to determine Karma
+          value. You cannot spend or earn Edge while exposed to your allergen.
+          You also suffer secondary effects, which are listed below.
         </p>
       </div>
     ),
@@ -927,10 +903,9 @@ export const Qualities: Quality[] = [
           substance found in the Sixth World.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Select an allergen and severity to determine Karma value. You cannot
-          spend or earn Edge while exposed to your allergen. You also suffer
-          secondary effects, which are listed below.
+          <b>Game Effect:</b> Select an allergen and severity to determine Karma
+          value. You cannot spend or earn Edge while exposed to your allergen.
+          You also suffer secondary effects, which are listed below.
         </p>
       </div>
     ),
@@ -950,10 +925,9 @@ export const Qualities: Quality[] = [
           substance found in the Sixth World.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Select an allergen and severity to determine Karma value. You cannot
-          spend or earn Edge while exposed to your allergen. You also suffer
-          secondary effects, which are listed below.
+          <b>Game Effect:</b> Select an allergen and severity to determine Karma
+          value. You cannot spend or earn Edge while exposed to your allergen.
+          You also suffer secondary effects, which are listed below.
         </p>
       </div>
     ),
@@ -973,10 +947,9 @@ export const Qualities: Quality[] = [
           substance found in the Sixth World.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Select an allergen and severity to determine Karma value. You cannot
-          spend or earn Edge while exposed to your allergen. You also suffer
-          secondary effects, which are listed below.
+          <b>Game Effect:</b> Select an allergen and severity to determine Karma
+          value. You cannot spend or earn Edge while exposed to your allergen.
+          You also suffer secondary effects, which are listed below.
         </p>
       </div>
     ),
@@ -996,10 +969,9 @@ export const Qualities: Quality[] = [
           substance found in the Sixth World.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Select an allergen and severity to determine Karma value. You cannot
-          spend or earn Edge while exposed to your allergen. You also suffer
-          secondary effects, which are listed below.
+          <b>Game Effect:</b> Select an allergen and severity to determine Karma
+          value. You cannot spend or earn Edge while exposed to your allergen.
+          You also suffer secondary effects, which are listed below.
         </p>
       </div>
     ),
@@ -1019,10 +991,9 @@ export const Qualities: Quality[] = [
           substance found in the Sixth World.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Select an allergen and severity to determine Karma value. You cannot
-          spend or earn Edge while exposed to your allergen. You also suffer
-          secondary effects, which are listed below.
+          <b>Game Effect:</b> Select an allergen and severity to determine Karma
+          value. You cannot spend or earn Edge while exposed to your allergen.
+          You also suffer secondary effects, which are listed below.
         </p>
       </div>
     ),
@@ -1042,10 +1013,9 @@ export const Qualities: Quality[] = [
           substance found in the Sixth World.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Select an allergen and severity to determine Karma value. You cannot
-          spend or earn Edge while exposed to your allergen. You also suffer
-          secondary effects, which are listed below.
+          <b>Game Effect:</b> Select an allergen and severity to determine Karma
+          value. You cannot spend or earn Edge while exposed to your allergen.
+          You also suffer secondary effects, which are listed below.
         </p>
       </div>
     ),
@@ -1065,10 +1035,9 @@ export const Qualities: Quality[] = [
           substance found in the Sixth World.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Select an allergen and severity to determine Karma value. You cannot
-          spend or earn Edge while exposed to your allergen. You also suffer
-          secondary effects, which are listed below.
+          <b>Game Effect:</b> Select an allergen and severity to determine Karma
+          value. You cannot spend or earn Edge while exposed to your allergen.
+          You also suffer secondary effects, which are listed below.
         </p>
       </div>
     ),
@@ -1088,10 +1057,9 @@ export const Qualities: Quality[] = [
           substance found in the Sixth World.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Select an allergen and severity to determine Karma value. You cannot
-          spend or earn Edge while exposed to your allergen. You also suffer
-          secondary effects, which are listed below.
+          <b>Game Effect:</b> Select an allergen and severity to determine Karma
+          value. You cannot spend or earn Edge while exposed to your allergen.
+          You also suffer secondary effects, which are listed below.
         </p>
       </div>
     ),
@@ -1111,10 +1079,9 @@ export const Qualities: Quality[] = [
           substance found in the Sixth World.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Select an allergen and severity to determine Karma value. You cannot
-          spend or earn Edge while exposed to your allergen. You also suffer
-          secondary effects, which are listed below.
+          <b>Game Effect:</b> Select an allergen and severity to determine Karma
+          value. You cannot spend or earn Edge while exposed to your allergen.
+          You also suffer secondary effects, which are listed below.
         </p>
       </div>
     ),
@@ -1134,10 +1101,9 @@ export const Qualities: Quality[] = [
           substance found in the Sixth World.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Select an allergen and severity to determine Karma value. You cannot
-          spend or earn Edge while exposed to your allergen. You also suffer
-          secondary effects, which are listed below.
+          <b>Game Effect:</b> Select an allergen and severity to determine Karma
+          value. You cannot spend or earn Edge while exposed to your allergen.
+          You also suffer secondary effects, which are listed below.
         </p>
       </div>
     ),
@@ -1157,10 +1123,9 @@ export const Qualities: Quality[] = [
           substance found in the Sixth World.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Select an allergen and severity to determine Karma value. You cannot
-          spend or earn Edge while exposed to your allergen. You also suffer
-          secondary effects, which are listed below.
+          <b>Game Effect:</b> Select an allergen and severity to determine Karma
+          value. You cannot spend or earn Edge while exposed to your allergen.
+          You also suffer secondary effects, which are listed below.
         </p>
       </div>
     ),
@@ -1180,10 +1145,9 @@ export const Qualities: Quality[] = [
           substance found in the Sixth World.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Select an allergen and severity to determine Karma value. You cannot
-          spend or earn Edge while exposed to your allergen. You also suffer
-          secondary effects, which are listed below.
+          <b>Game Effect:</b> Select an allergen and severity to determine Karma
+          value. You cannot spend or earn Edge while exposed to your allergen.
+          You also suffer secondary effects, which are listed below.
         </p>
       </div>
     ),
@@ -1203,10 +1167,9 @@ export const Qualities: Quality[] = [
           substance found in the Sixth World.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Select an allergen and severity to determine Karma value. You cannot
-          spend or earn Edge while exposed to your allergen. You also suffer
-          secondary effects, which are listed below.
+          <b>Game Effect:</b> Select an allergen and severity to determine Karma
+          value. You cannot spend or earn Edge while exposed to your allergen.
+          You also suffer secondary effects, which are listed below.
         </p>
       </div>
     ),
@@ -1224,7 +1187,7 @@ export const Qualities: Quality[] = [
           field, or just an inability to focus when there’s so much to look at,
           you get dizzy and nauseated when utilizing AR.
         </p>
-        <b>Game Effect:</b>
+        <b>Game Effect:</b>{" "}
         <p>
           You cannot gain or spend Edge while utilizing AR of any sort. You also
           gain the Nauseated status (p. 52) while using AR and for one hour
@@ -1248,7 +1211,7 @@ export const Qualities: Quality[] = [
           first-year dropouts from Hagerstown Community College’s Arcane Studies
           program.
         </p>
-        <b>Game Effect:</b>
+        <b>Game Effect:</b>{" "}
         <p>
           You are considered Untrained for all Stealth tests in the astral
           plane. You can never take the masking metamagic. Assensing tests made
@@ -1270,7 +1233,7 @@ export const Qualities: Quality[] = [
           the evil eye laid on you, or just can’t catch a break. No matter the
           reason, things just go wrong around you. Often.
         </p>
-        <b>Game Effect:</b>
+        <b>Game Effect:</b>{" "}
         <p>
           Glitches occur more frequently. Count dice showing both 1 and 2 for
           determining a glitch. This does not affect critical glitches, only
@@ -1311,7 +1274,7 @@ export const Qualities: Quality[] = [
           shooting. Sure, you recover, but you always feel a half step behind in
           the fight.
         </p>
-        <b>Game Effect:</b>
+        <b>Game Effect:</b>{" "}
         <p>
           Your Initiative Score is divided in half at the start of combat. You
           cannot take a Move or Sprint action in the first round, and you act
@@ -1333,7 +1296,7 @@ export const Qualities: Quality[] = [
           trid account, and generally cost you enough nuyen to keep you looking
           for that next score.
         </p>
-        <b>Game Effect:</b>
+        <b>Game Effect:</b>{" "}
         <p>
           Choose a level for the dependents. Level 1 dependents are the
           equivalent of a family member who does not live with you but still
@@ -1366,7 +1329,7 @@ export const Qualities: Quality[] = [
           head-to-toe white suit. A distinctive style is more than just what you
           choose to put on each day—it’s a way of life.
         </p>
-        <b>Game Effect:</b>
+        <b>Game Effect:</b>{" "}
         <p>
           You cannot gain or spend Edge when you’re not rocking your distinctive
           look. Others get a +2 dice pool bonus when conducting a Memory test
@@ -1390,7 +1353,7 @@ export const Qualities: Quality[] = [
           belong with, no matter how round your ears or broad your tusks were at
           birth.
         </p>
-        <b>Game Effect:</b>
+        <b>Game Effect:</b>{" "}
         <p>
           Elves, orks, and trolls gain a point of Edge in Influence (Etiquette)
           tests made against you.
@@ -1408,7 +1371,7 @@ export const Qualities: Quality[] = [
           Doesn’t take much to lay you on your hoop. You just never could take a
           punch.
         </p>
-        <b>Game Effect:</b>
+        <b>Game Effect:</b>{" "}
         <p>
           You have 1 less Stun Box for each level of this Quality, down to a
           minimum of 2.
@@ -1430,14 +1393,13 @@ export const Qualities: Quality[] = [
           in your hands has gone wrong at one point in your life.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Whenever you use any device, roll 2D6. If you get a 1 on either die,
-          it means the device fails to function correctly and can be treated as
-          a glitch. The device can be quickly reset with a Minor Action and used
-          again. Rolling snake eyes (double 1s) means the device fails
-          catastrophically, and the roll can be treated like a critical glitch.
-          The device is done for good and you might be in for a bit of hurt from
-          shock or biofeedback.
+          <b>Game Effect:</b> Whenever you use any device, roll 2D6. If you get
+          a 1 on either die, it means the device fails to function correctly and
+          can be treated as a glitch. The device can be quickly reset with a
+          Minor Action and used again. Rolling snake eyes (double 1s) means the
+          device fails catastrophically, and the roll can be treated like a
+          critical glitch. The device is done for good and you might be in for a
+          bit of hurt from shock or biofeedback.
         </p>
       </div>
     ),
@@ -1454,15 +1416,14 @@ export const Qualities: Quality[] = [
           the balance in your soul, heart, qi, brain chemistry, etc.
         </p>
         <p>
-          <b>Game Effect:</b>
-          You cannot spend or earn Edge for twenty-four hours after you break a
-          tenet of your code. If the same tenet is broken multiple times or
-          broken again during the twenty-four hour period, each infraction adds
-          another forty-eight hours onto the initial twenty-four. If a different
-          tenet is broken, it’s twenty-four hours for that one added to any
-          current infractions, and the same rules apply for additional
-          violations. See the Honorbound sidebar for some sample codes and
-          tenets.
+          <b>Game Effect:</b> You cannot spend or earn Edge for twenty-four
+          hours after you break a tenet of your code. If the same tenet is
+          broken multiple times or broken again during the twenty-four hour
+          period, each infraction adds another forty-eight hours onto the
+          initial twenty-four. If a different tenet is broken, it’s twenty-four
+          hours for that one added to any current infractions, and the same
+          rules apply for additional violations. See the Honorbound sidebar for
+          some sample codes and tenets.
         </p>
       </div>
     ),
@@ -1481,9 +1442,8 @@ export const Qualities: Quality[] = [
           achievement level of your peers.{" "}
         </p>
         <p>
-          <b>Game Effect:</b>
-          For each level, the character’s maximum for the chosen attribute
-          decreases by 1, to a minimum of 2.
+          <b>Game Effect:</b> For each level, the character’s maximum for the
+          chosen attribute decreases by 1, to a minimum of 2.
         </p>
       </div>
     ),
@@ -1504,13 +1464,12 @@ export const Qualities: Quality[] = [
           some skills you just can’t manage to get right.
         </p>
         <p>
-          <b>Game Effect:</b>
-          When this quality is chosen, select a skill. You are unable to gain
-          ranks in the selected skill. You cannot be Incompetent in skills you
-          have no chance to perform— so you cannot choose this quality for Magic
-          skills if you do not have a Magic rating, and you cannot choose it for
-          Tasking if you do not have a Resonance rating. This skill may only be
-          selected once.
+          <b>Game Effect:</b> When this quality is chosen, select a skill. You
+          are unable to gain ranks in the selected skill. You cannot be
+          Incompetent in skills you have no chance to perform— so you cannot
+          choose this quality for Magic skills if you do not have a Magic
+          rating, and you cannot choose it for Tasking if you do not have a
+          Resonance rating. This skill may only be selected once.
         </p>
       </div>
     ),
@@ -1528,21 +1487,18 @@ export const Qualities: Quality[] = [
           debt trying to get a foothold in the shadows.
         </p>
         <p>
-          <b>Game Effect:</b>
-          <p>
-            When you spend Karma for cash, every point of Karma you spend gets
-            you 5,000 instead of 2,000 nuyen. Each point of Karma spent also
-            puts you 5,000 nuyen into debt with someone very dangerous and
-            capable of collecting. You must pay a monthly interest rate of 500
-            nuyen per Karma spent, in addition to any payment to the principal.
-            If the interest is not paid, the lenders come searching for you. You
-            must repay interest at a rate of 200 nuyen per level of this
-            quality, which addresses interest only, not principal. If the
-            payment is not made, the lenders come searching for you. The quality
-            can be bought off purely with money; if the principal is repaid the
-            quality is eliminated. This quality can be obtained only during
-            character creation, not during gameplay.
-          </p>
+          <b>Game Effect:</b> When you spend Karma for cash, every point of
+          Karma you spend gets you 5,000 instead of 2,000 nuyen. Each point of
+          Karma spent also puts you 5,000 nuyen into debt with someone very
+          dangerous and capable of collecting. You must pay a monthly interest
+          rate of 500 nuyen per Karma spent, in addition to any payment to the
+          principal. If the interest is not paid, the lenders come searching for
+          you. You must repay interest at a rate of 200 nuyen per level of this
+          quality, which addresses interest only, not principal. If the payment
+          is not made, the lenders come searching for you. The quality can be
+          bought off purely with money; if the principal is repaid the quality
+          is eliminated. This quality can be obtained only during character
+          creation, not during gameplay.
         </p>
       </div>
     ),
@@ -1561,17 +1517,14 @@ export const Qualities: Quality[] = [
           you just can’t get a good night’s rest.
         </p>
         <p>
-          <b>Game Effect:</b>
-          <p>
-            Without proper rest, you can’t regain Edge or spend it as you might
-            like. Each day the runner must make a Body + Willpower (3) test to
-            get a successful night of rest. If they fail, they cannot earn more
-            than two Edge from any source that day. Also, they cannot spend more
-            than 2 Edge on any given test. The purchase and use of a sleep
-            regulator reduces the threshold on the test to 1. The runner can
-            also purchase medication (50 nuyen/dose) that reduces the threshold
-            to 2.
-          </p>
+          <b>Game Effect:</b> Without proper rest, you can’t regain Edge or
+          spend it as you might like. Each day the runner must make a Body +
+          Willpower (3) test to get a successful night of rest. If they fail,
+          they cannot earn more than two Edge from any source that day. Also,
+          they cannot spend more than 2 Edge on any given test. The purchase and
+          use of a sleep regulator reduces the threshold on the test to 1. The
+          runner can also purchase medication (50 nuyen/dose) that reduces the
+          threshold to 2.
         </p>
       </div>
     ),
@@ -1588,10 +1541,9 @@ export const Qualities: Quality[] = [
           at every turn.
         </p>
         <p>
-          <b>Game Effect:</b>
-          During any encounter, the runner must make a Willpower (2) test as a
-          Minor Action. Failure means they cannot earn or spend Edge for the
-          entire encounter.
+          <b>Game Effect:</b> During any encounter, the runner must make a
+          Willpower (2) test as a Minor Action. Failure means they cannot earn
+          or spend Edge for the entire encounter.
         </p>
       </div>
     ),
@@ -1607,8 +1559,7 @@ export const Qualities: Quality[] = [
           whatever reason, you are more affected by injuries and discomfort.
         </p>
         <p>
-          <b>Game Effect:</b>
-          All wound modifiers are doubled.
+          <b>Game Effect:</b> All wound modifiers are doubled.
         </p>
       </div>
     ),
@@ -1627,9 +1578,8 @@ export const Qualities: Quality[] = [
           with, no matter how round your ears or thin your frame was at birth.{" "}
         </p>
         <p>
-          <b>Game Effect:</b>
-          Elves, orks, and trolls gain a point of Edge in Influence (Etiquette)
-          tests made against you.
+          <b>Game Effect:</b> Elves, orks, and trolls gain a point of Edge in
+          Influence (Etiquette) tests made against you.
         </p>
       </div>
     ),
@@ -1647,10 +1597,9 @@ export const Qualities: Quality[] = [
           other things while they’re around.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Select a specific group or type of people. You are unable to gain or
-          use Edge while the object of your prejudice is present (unless you’re
-          attacking them).
+          <b>Game Effect:</b> Select a specific group or type of people. You are
+          unable to gain or use Edge while the object of your prejudice is
+          present (unless you’re attacking them).
         </p>
       </div>
     ),
@@ -1669,10 +1618,9 @@ export const Qualities: Quality[] = [
           even when it’s just AR.
         </p>
         <p>
-          <b>Game Effect:</b>
-          You cannot spend Edge while accessing the Matrix. This includes
-          through use of commlinks, smartlinks, and any other source of data
-          coming in from the ether.
+          <b>Game Effect:</b> You cannot spend Edge while accessing the Matrix.
+          This includes through use of commlinks, smartlinks, and any other
+          source of data coming in from the ether.
         </p>
       </div>
     ),
@@ -1690,11 +1638,10 @@ export const Qualities: Quality[] = [
           code.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Essence costs are doubled for all cyberware, bioware, and nanoware.
-          Geneware suffers no ill effects. You cannot have this quality if you
-          have a Magic or Resonance rating. (Note that nanoware and geneware
-          will be covered in future books.)
+          <b>Game Effect:</b> Essence costs are doubled for all cyberware,
+          bioware, and nanoware. Geneware suffers no ill effects. You cannot
+          have this quality if you have a Magic or Resonance rating. (Note that
+          nanoware and geneware will be covered in future books.)
         </p>
       </div>
     ),
@@ -1711,10 +1658,9 @@ export const Qualities: Quality[] = [
           you log onto the Matrix in VR, your disorientation is nauseating.
         </p>
         <p>
-          <b>Game Effect:</b>
-          You cannot gain or spend Edge while accessing the Matrix via VR. You
-          also receive the Nauseated status (p. 52) for one hour after you log
-          off the Matrix.
+          <b>Game Effect:</b> You cannot gain or spend Edge while accessing the
+          Matrix via VR. You also receive the Nauseated status (p. 52) for one
+          hour after you log off the Matrix.
         </p>
       </div>
     ),
@@ -1732,10 +1678,9 @@ export const Qualities: Quality[] = [
           you can’t just burn it.
         </p>
         <p>
-          <b>Game Effect:</b>
-          You pay taxes to the issuer of your SIN, either a megacorporation or a
-          nation. This cost comes as a 10 percent increase in the cost of the
-          lifestyle associated with this SIN. <br />
+          <b>Game Effect:</b> You pay taxes to the issuer of your SIN, either a
+          megacorporation or a nation. This cost comes as a 10 percent increase
+          in the cost of the lifestyle associated with this SIN. <br />
           Due to data within the Global SIN Registry, you are easier to track or
           identify, giving opponents a point of Edge every time they attempt a
           Trace Icon action against you.
@@ -1757,12 +1702,11 @@ export const Qualities: Quality[] = [
           stressful.
         </p>
         <p>
-          <b>Game Effect:</b>
-          Select a specific social stressor. When encountering your social
-          stressor, you must make a Charisma (2) test as a Minor Action. Failure
-          means you cannot earn or spend Edge until you succeed. You can choose
-          not to take the test but if so, any tests made against you gain a
-          bonus Edge.
+          <b>Game Effect:</b> Select a specific social stressor. When
+          encountering your social stressor, you must make a Charisma (2) test
+          as a Minor Action. Failure means you cannot earn or spend Edge until
+          you succeed. You can choose not to take the test but if so, any tests
+          made against you gain a bonus Edge.
         </p>
       </div>
     ),
@@ -1783,12 +1727,11 @@ export const Qualities: Quality[] = [
           has an inherent dislike for you.
         </p>
         <p>
-          <b>Game Effect:</b>
-          When selecting this quality, choose a type of spirit or sprite.
-          Spirits/ sprites from that category gain a bonus point of Edge when
-          you attempt a Conjuring or Tasking test against them. This quality can
-          be taken multiple times, selecting a new class of spirits/sprites each
-          time. <br />
+          <b>Game Effect:</b> When selecting this quality, choose a type of
+          spirit or sprite. Spirits/ sprites from that category gain a bonus
+          point of Edge when you attempt a Conjuring or Tasking test against
+          them. This quality can be taken multiple times, selecting a new class
+          of spirits/sprites each time. <br />
           In combat, spirits/sprites of the chosen type will attack you first
           and relentlessly, often to the point of savaging a dead body or
           bricking a deck if they have nothing else to do.
@@ -1812,12 +1755,11 @@ export const Qualities: Quality[] = [
           has an inherent dislike for you.
         </p>
         <p>
-          <b>Game Effect:</b>
-          When selecting this quality, choose a type of spirit or sprite.
-          Spirits/ sprites from that category gain a bonus point of Edge when
-          you attempt a Conjuring or Tasking test against them. This quality can
-          be taken multiple times, selecting a new class of spirits/sprites each
-          time. <br />
+          <b>Game Effect:</b> When selecting this quality, choose a type of
+          spirit or sprite. Spirits/ sprites from that category gain a bonus
+          point of Edge when you attempt a Conjuring or Tasking test against
+          them. This quality can be taken multiple times, selecting a new class
+          of spirits/sprites each time. <br />
           In combat, spirits/sprites of the chosen type will attack you first
           and relentlessly, often to the point of savaging a dead body or
           bricking a deck if they have nothing else to do.
@@ -1839,8 +1781,7 @@ export const Qualities: Quality[] = [
           see you as rude and abrasive.
         </p>
         <p>
-          <b>Game Effect:</b>
-          You cannot spend Edge on any test using Charisma.
+          <b>Game Effect:</b> You cannot spend Edge on any test using Charisma.
         </p>
       </div>
     ),
@@ -1858,8 +1799,7 @@ export const Qualities: Quality[] = [
           your basic education.
         </p>
         <p>
-          <b>Game Effect:</b>
-          You cannot spend Edge on any test using Logic.
+          <b>Game Effect:</b> You cannot spend Edge on any test using Logic.
         </p>
       </div>
     ),
@@ -1877,12 +1817,12 @@ export const Qualities: Quality[] = [
           typing, tying your shoes, and keeping a gunsight on the target.
         </p>
         <p>
-          <b>Game Effect:</b>
-          You cannot spend Edge on any test using Agility that directly involves
-          your hands (that is, a Stealth test to pull off sleightof-hand would
-          directly involve the hands, as would an Attack test with any weapon
-          held in the hands, but an Athletics test involving running would not,
-          even though the hands are in motion while running).
+          <b>Game Effect:</b> You cannot spend Edge on any test using Agility
+          that directly involves your hands (that is, a Stealth test to pull off
+          sleightof-hand would directly involve the hands, as would an Attack
+          test with any weapon held in the hands, but an Athletics test
+          involving running would not, even though the hands are in motion while
+          running).
         </p>
       </div>
     ),
@@ -1902,11 +1842,10 @@ export const Qualities: Quality[] = [
           for a bit.
         </p>
         <p>
-          <b>Game Effect:</b>
-          You cannot spend Edge to resist the effects of an infection. The
-          threshold for fighting off any infection you are exposed to is
-          increased by 1. While suffering the ill effects of an illness, you
-          suffer a –1 dice pool modifier to all tests.
+          <b>Game Effect:</b> You cannot spend Edge to resist the effects of an
+          infection. The threshold for fighting off any infection you are
+          exposed to is increased by 1. While suffering the ill effects of an
+          illness, you suffer a –1 dice pool modifier to all tests.
         </p>
       </div>
     ),
