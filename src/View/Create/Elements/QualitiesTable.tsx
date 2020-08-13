@@ -372,6 +372,16 @@ export class QualitiesTable extends React.Component<
             );
           })}
         </div>
+        <div className="qualityDescription">
+          <h4>
+            {this.state.currentlySelected
+              ? this.state.currentlySelected.Name
+              : null}
+          </h4>
+          {this.state.currentlySelected
+            ? this.state.currentlySelected.Description
+            : null}
+        </div>
       </div>
     );
   }

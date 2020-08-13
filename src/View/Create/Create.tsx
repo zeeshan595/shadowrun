@@ -166,7 +166,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
 
   render() {
     return (
-      <div>
+      <div className="characterCreation">
         <PriorityTable
           updatePriority={(key, value) => this.updatePriority(key, value)}
           priorities={this.state.priorities}

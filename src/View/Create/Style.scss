@@ -1,4 +1,10 @@
+.characterCreation {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .priorityTable {
+  width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
 
@@ -34,7 +40,8 @@
 .raceDescription {
   display: inline-block;
   vertical-align: top;
-  width: 600px;
+  width: 700px;
+
   h4 {
     margin-top: 5px;
     margin-bottom: 5px;
@@ -62,7 +69,7 @@
   display: inline-block;
   vertical-align: top;
   margin-left: 100px;
-  width: 600px;
+  width: 650px;
   font-size: 12px;
 }
 
@@ -103,7 +110,6 @@
     width: 300px;
     height: 500px;
     margin-top: 10px;
-    margin-left: 20px;
     margin-right: 20px;
 
     .quality {
@@ -140,5 +146,11 @@
         margin-bottom: 10px;
       }
     }
+  }
+  .qualityDescription {
+    vertical-align: top;
+    display: inline-block;
+    width: 215px;
+    font-size: 14px;
   }
 }
