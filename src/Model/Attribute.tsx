@@ -1,7 +1,7 @@
-import { Attributes } from "react";
+import { AttributeTypePlus } from "./Skills";
 
 export interface Attribute {
-  name: string;
+  name: AttributeTypePlus;
   adjustment?: number;
   attribute?: number;
   karma: number;
@@ -36,7 +36,7 @@ export const getAttributeTotal = (attribute: Attribute): number => {
 
 export const attributes: CharacterAttributes = {
   body: {
-    name: "Body",
+    name: AttributeTypePlus.Body,
     adjustment: 0,
     attribute: 0,
     karma: 0,
@@ -44,21 +44,21 @@ export const attributes: CharacterAttributes = {
     MaxValue: 6,
   },
   agility: {
-    name: "Agility",
+    name: AttributeTypePlus.Agility,
     attribute: 0,
     karma: 0,
     baseMaxValue: 6,
     MaxValue: 6,
   },
   reaction: {
-    name: "Reaction",
+    name: AttributeTypePlus.Reaction,
     attribute: 0,
     karma: 0,
     baseMaxValue: 6,
     MaxValue: 6,
   },
   strength: {
-    name: "Strength",
+    name: AttributeTypePlus.Strength,
     adjustment: 0,
     attribute: 0,
     karma: 0,
@@ -66,7 +66,7 @@ export const attributes: CharacterAttributes = {
     MaxValue: 6,
   },
   willpower: {
-    name: "Willpower",
+    name: AttributeTypePlus.Willpower,
     adjustment: 0,
     attribute: 0,
     karma: 0,
@@ -74,35 +74,35 @@ export const attributes: CharacterAttributes = {
     MaxValue: 6,
   },
   logic: {
-    name: "Logic",
+    name: AttributeTypePlus.Logic,
     attribute: 0,
     karma: 0,
     baseMaxValue: 6,
     MaxValue: 6,
   },
   intuition: {
-    name: "Intuition",
+    name: AttributeTypePlus.Intuition,
     attribute: 0,
     karma: 0,
     baseMaxValue: 6,
     MaxValue: 6,
   },
   charisma: {
-    name: "Charisma",
+    name: AttributeTypePlus.Charisma,
     attribute: 0,
     karma: 0,
     baseMaxValue: 6,
     MaxValue: 6,
   },
   edge: {
-    name: "Edge",
+    name: AttributeTypePlus.Edge,
     adjustment: 0,
     karma: 0,
     baseMaxValue: 6,
     MaxValue: 7,
   },
   magic: {
-    name: "Magic",
+    name: AttributeTypePlus.Magic,
     adjustment: 0,
     karma: 0,
     baseMaxValue: 6,
@@ -110,7 +110,7 @@ export const attributes: CharacterAttributes = {
     baseValue: 2,
   },
   resonance: {
-    name: "Resonance",
+    name: AttributeTypePlus.Resonance,
     adjustment: 0,
     karma: 0,
     baseMaxValue: 6,

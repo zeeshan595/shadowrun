@@ -43,7 +43,7 @@ export enum SpriteType {
 export enum SkillType {
   Astral,
   Athletics,
-  Biotech,
+  BioTech,
   CloseCombat,
   Con,
   Conjuring,

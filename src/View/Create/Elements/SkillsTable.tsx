@@ -1,5 +1,12 @@
 import * as React from "react";
-import { skills, Skill } from "../../../Model/Skills";
+import {
+  skills,
+  Skill,
+  getSpecialization,
+  AttributeTypePlus,
+} from "../../../Model/Skills";
+import { SkillType } from "../../../Model/Quality";
+import { printpretty } from "./General";
 
 export interface ISkillsTableProps {
   skills: Skill[];
@@ -22,7 +29,8 @@ export class SkillsTable extends React.Component<
   }
 
   addSkill(skill: Skill | null) {
-    if (skills === null) return;
+    if (skill === undefined || skill === null) return;
+    skill.value = 1;
     this.props.updateSkills([...this.props.skills, skill]);
     this.setState({
       ...this.state,
@@ -30,7 +38,7 @@ export class SkillsTable extends React.Component<
     });
   }
   removeSkill(skill: Skill | null) {
-    if (skills === null) return;
+    if (skill === undefined || skill === null) return;
     this.props.updateSkills([
       ...this.props.skills.filter((s) => s.name !== skill.name),
     ]);
@@ -40,7 +48,64 @@ export class SkillsTable extends React.Component<
     });
   }
 
+  addValue(skill: Skill) {
+    if (skill === undefined || skill === null) return;
+    if (skill.value >= 6) return;
+    skill.value++;
+    this.props.updateSkills([
+      ...this.props.skills.filter((s) => s.name !== skill.name),
+      skill,
+    ]);
+  }
+  removeValue(skill: Skill) {
+    if (skill === undefined || skill === null) return;
+    if (skill.value <= 1) return;
+    skill.value--;
+    this.props.updateSkills([
+      ...this.props.skills.filter((s) => s.name !== skill.name),
+      skill,
+    ]);
+  }
+
+  addValueWithKarma(skill: Skill) {
+    if (skill === undefined || skill === null) return;
+    if (skill.value >= 6) return;
+    skill.value++;
+    this.props.updateSkills([
+      ...this.props.skills.filter((s) => s.name !== skill.name),
+      skill,
+    ]);
+  }
+  removeValueWithKarma(skill: Skill) {
+    if (skill === undefined || skill === null) return;
+    if (skill.value <= 1) return;
+    skill.value--;
+    this.props.updateSkills([
+      ...this.props.skills.filter((s) => s.name !== skill.name),
+      skill,
+    ]);
+  }
+
   render() {
+    let description = null;
+    if (this.state.currentlySelected) {
+      description = (
+        <React.Fragment>
+          <h2>
+            {printpretty(
+              SkillType[this.state.currentlySelected.name].toString()
+            )}
+          </h2>
+          <b>Attribute: </b>{" "}
+          {AttributeTypePlus[this.state.currentlySelected.attributes[0]]}
+          <br />
+          <b>Untrained: </b>
+          {this.state.currentlySelected.untrained ? " Yes" : " No"}
+          {this.state.currentlySelected.description}
+        </React.Fragment>
+      );
+    }
+
     return (
       <div>
         <h2>Distribute your skill points</h2>
@@ -63,7 +128,7 @@ export class SkillsTable extends React.Component<
                     this.setState({ ...this.state, currentlySelected: s })
                   }
                 >
-                  <div className="name">{s.name}</div>
+                  <div className="name">{SkillType[s.name]}</div>
                 </div>
               ))}
           </div>
@@ -93,11 +158,23 @@ export class SkillsTable extends React.Component<
                     this.setState({ ...this.state, currentlySelected: s })
                   }
                 >
-                  <div className="name">{s.name}</div>
+                  <div className="name">{SkillType[s.name]}</div>
+                  <select>
+                    {getSpecialization(s.name).map((spec) => (
+                      <option key={spec.id} value={spec.id}>
+                        {printpretty(spec.text)}
+                      </option>
+                    ))}
+                  </select>
+                  <div>
+                    <button onClick={() => this.removeValue(s)}>-</button>
+                    {s.value}
+                    <button onClick={() => this.addValue(s)}>+</button>
+                  </div>
                 </div>
               ))}
           </div>
-          <div className="skillDescription"></div>
+          <div className="skillDescription">{description}</div>
         </div>
       </div>
     );

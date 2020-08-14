@@ -17,6 +17,7 @@ import {
   Qualities,
   AttributeType,
   QualityType,
+  SkillType,
 } from "../../Model/Quality";
 import { AttributeTable } from "./Elements/AttributesTable";
 import {
@@ -398,6 +399,20 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     return currentAdjustments;
   }
 
+  calculateSkillPoints(): number {
+    const aptitude = this.state.qualities.find((q) => q.Name === "Aptitude");
+    let skills = this.getPriorityForSkills(this.state.priorities.skills);
+    this.state.skills.forEach((s) => {
+      skills -= s.value;
+      if (aptitude !== undefined && aptitude !== null) {
+        if ((aptitude as Quality).Skill === s.name) {
+          skills++;
+        }
+      }
+    });
+    return skills;
+  }
+
   render() {
     return (
       <div className="characterCreation">
@@ -416,7 +431,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
           </div>
           <div className="item">
             <div className="name">Skills</div>
-            <div className="value">50</div>
+            <div className="value">{this.calculateSkillPoints()}</div>
           </div>
           <div className="item">
             <div className="name">Knowledge</div>

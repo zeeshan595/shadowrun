@@ -167,7 +167,7 @@
   .qualityDescription {
     vertical-align: top;
     display: inline-block;
-    width: 215px;
+    width: 210px;
     font-size: 14px;
   }
 }
@@ -226,5 +226,9 @@
     }
   }
   .skillDescription {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 10px;
+    width: 230px;
   }
 }
