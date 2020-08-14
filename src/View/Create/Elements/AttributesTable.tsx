@@ -5,6 +5,7 @@ import {
   Attribute,
   getAttributeTotal,
 } from "../../../Model/Attribute";
+import { AttributeTypePlus } from "../../../Model/Skills";
 
 export interface IAttributeTableProps {
   updateAttributes: (attributes: CharacterAttributes) => void;
@@ -173,7 +174,7 @@ export class AttributeTable extends React.Component<
 
               return (
                 <tr key={key}>
-                  <td>{attrib.name}</td>
+                  <td>{AttributeTypePlus[attrib.name]}</td>
                   <td>{adjust}</td>
                   <td>{attrVal}</td>
                   <td>{karmaVal}</td>
