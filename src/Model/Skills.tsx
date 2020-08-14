@@ -77,7 +77,16 @@ enum EngineeringSpecialization {
   Lockpicking,
   NauticalMechanic,
 }
-enum ExoticWeaponsSpecialization {}
+enum ExoticWeaponsSpecialization {
+  Bullwhip,
+  MonofilamentWhip,
+  "Ares S-III Super Squirt",
+  ParashieldDartSeries,
+  "Ares Antioch II",
+  "Armtech MGL-6/MGL12",
+  AztechnologyStriker,
+  OnotariInterceptor,
+}
 enum FirearmsSpecialization {
   Automatics,
   Longarms,
@@ -140,9 +149,7 @@ export interface Skill {
   value: number;
 }
 
-export const getSpecialization = (
-  type: SkillType
-): { id: number; text: string }[] => {
+export const getSpecEnum = (type: SkillType): any => {
   let specialization: any;
   if (type === SkillType.Astral) specialization = AstralSpecialization;
   else if (type === SkillType.Athletics)
@@ -173,7 +180,13 @@ export const getSpecialization = (
   else if (type === SkillType.Stealth) specialization = StealthSpecialization;
   else if (type === SkillType.Tasking) specialization = TaskingSpecialization;
   else throw new Error("this specialization does not exist");
+  return specialization;
+};
 
+export const getSpecialization = (
+  type: SkillType
+): { id: number; text: string }[] => {
+  const specialization = getSpecEnum(type);
   const text: string[] = [];
   const numbers: number[] = [];
   for (let member in specialization) {

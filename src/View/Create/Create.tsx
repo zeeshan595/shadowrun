@@ -445,6 +445,14 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
               {this.getPriorityForMagic(this.state.priorities.magic) * 2}
             </div>
           </div>
+          <div className="item">
+            <div className="name">Resources</div>
+            <div className="value">
+              {this.getPriorityForResources(this.state.priorities.resources)
+                .toString()
+                .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}
+            </div>
+          </div>
         </div>
         <PriorityTable
           updatePriority={(key, value) => this.updatePriority(key, value)}

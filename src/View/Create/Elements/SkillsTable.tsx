@@ -67,19 +67,10 @@ export class SkillsTable extends React.Component<
     ]);
   }
 
-  addValueWithKarma(skill: Skill) {
+  changeSpecialization(skill: Skill, specValue: number) {
+    console.log(specValue);
     if (skill === undefined || skill === null) return;
-    if (skill.value >= 6) return;
-    skill.value++;
-    this.props.updateSkills([
-      ...this.props.skills.filter((s) => s.name !== skill.name),
-      skill,
-    ]);
-  }
-  removeValueWithKarma(skill: Skill) {
-    if (skill === undefined || skill === null) return;
-    if (skill.value <= 1) return;
-    skill.value--;
+    skill.specializations = specValue;
     this.props.updateSkills([
       ...this.props.skills.filter((s) => s.name !== skill.name),
       skill,
@@ -159,7 +150,15 @@ export class SkillsTable extends React.Component<
                   }
                 >
                   <div className="name">{SkillType[s.name]}</div>
-                  <select>
+                  <select
+                    value={s.specializations}
+                    onChange={(evt) =>
+                      this.changeSpecialization(
+                        s,
+                        parseInt(evt.currentTarget.value)
+                      )
+                    }
+                  >
                     {getSpecialization(s.name).map((spec) => (
                       <option key={spec.id} value={spec.id}>
                         {printpretty(spec.text)}
