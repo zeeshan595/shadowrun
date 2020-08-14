@@ -25,6 +25,8 @@ import {
   Attribute,
   getAttributeTotal,
 } from "../../Model/Attribute";
+import { SkillsTable } from "./Elements/SkillsTable";
+import { Skill } from "../../Model/Skills";
 
 export interface ICreateProps {}
 
@@ -40,6 +42,7 @@ export interface ICreateState {
   magic: Magic;
   qualities: Quality[];
   attributes: CharacterAttributes;
+  skills: Skill[];
 }
 
 export class Create extends React.Component<ICreateProps, ICreateState> {
@@ -62,6 +65,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       },
       qualities: [],
       attributes: Object.assign({}, attributes),
+      skills: [],
     };
   }
 
@@ -278,6 +282,13 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     }, 100);
   }
 
+  updateSkills(skills: Skill[]) {
+    this.setState({
+      ...this.state,
+      skills,
+    });
+  }
+
   getPriorityForMetaType(priority: PriorityType): MetaType {
     if (priority === PriorityType.A)
       return {
@@ -443,6 +454,10 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
         <AttributeTable
           attributes={this.state.attributes}
           updateAttributes={(attributes) => this.updateAttributes(attributes)}
+        />
+        <SkillsTable
+          skills={this.state.skills}
+          updateSkills={(s) => this.updateSkills(s)}
         />
       </div>
     );
