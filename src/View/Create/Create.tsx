@@ -17,7 +17,6 @@ import {
   Qualities,
   AttributeType,
   QualityType,
-  SkillType,
 } from "../../Model/Quality";
 import { AttributeTable } from "./Elements/AttributesTable";
 import {
@@ -28,6 +27,8 @@ import {
 } from "../../Model/Attribute";
 import { SkillsTable } from "./Elements/SkillsTable";
 import { Skill } from "../../Model/Skills";
+import { KnowledgeTable } from "./Elements/KnowledgeTable";
+import { Knowledge, KnowledgeType, LanguageType } from "../../Model/Knowledge";
 
 export interface ICreateProps {}
 
@@ -44,6 +45,7 @@ export interface ICreateState {
   qualities: Quality[];
   attributes: CharacterAttributes;
   skills: Skill[];
+  knowledge: Knowledge[];
 }
 
 export class Create extends React.Component<ICreateProps, ICreateState> {
@@ -67,6 +69,14 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       qualities: [],
       attributes: Object.assign({}, attributes),
       skills: [],
+      knowledge: [
+        {
+          type: KnowledgeType.Language,
+          isNativeLanguage: true,
+          langType: LanguageType.Expert,
+          custom: "English",
+        },
+      ],
     };
   }
 
@@ -290,6 +300,13 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     });
   }
 
+  updateKnowledge(knowledge: Knowledge[]) {
+    this.setState({
+      ...this.state,
+      knowledge,
+    });
+  }
+
   getPriorityForMetaType(priority: PriorityType): MetaType {
     if (priority === PriorityType.A)
       return {
@@ -413,6 +430,26 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     return skills;
   }
 
+  calculateKnowledgePoints(): number {
+    let points = getAttributeTotal(this.state.attributes.logic);
+    this.state.knowledge.forEach((knowledge) => {
+      if (knowledge.isNativeLanguage) return;
+      if (knowledge.type === KnowledgeType.Knowledge) {
+        points -= 1;
+        return;
+      } else if (knowledge.type === KnowledgeType.Language) {
+        if (knowledge.langType === LanguageType.BasicUnderstanding) {
+          points -= 1;
+        } else if (knowledge.langType === LanguageType.Specialist) {
+          points -= 2;
+        } else if (knowledge.langType === LanguageType.Expert) {
+          points -= 3;
+        }
+      }
+    });
+    return points;
+  }
+
   render() {
     return (
       <div className="characterCreation">
@@ -435,9 +472,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
           </div>
           <div className="item">
             <div className="name">Knowledge</div>
-            <div className="value">
-              {getAttributeTotal(this.state.attributes.logic)}
-            </div>
+            <div className="value">{this.calculateKnowledgePoints()}</div>
           </div>
           <div className="item">
             <div className="name">Spells</div>
@@ -481,6 +516,10 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
         <SkillsTable
           skills={this.state.skills}
           updateSkills={(s) => this.updateSkills(s)}
+        />
+        <KnowledgeTable
+          knowledge={this.state.knowledge}
+          updateKnowledge={(k) => this.updateKnowledge(k)}
         />
       </div>
     );
