@@ -14,7 +14,6 @@ import { printpretty } from "./General";
 export interface IQualitiesProps {
   selectedQualities: Quality[];
   updateQualities: (qualities: Quality[]) => void;
-  karma: number;
 }
 
 export interface IQualitiesState {
@@ -99,7 +98,6 @@ export class QualitiesTable extends React.Component<
           <option value={QualityType.Positive}>Positive</option>
           <option value={QualityType.Negative}>Negative</option>
         </select>
-        <span className="karamCost">Karma: {this.props.karma}</span>
         <br />
         <div className="qualityList">
           {positiveQualities.map((q, index) => (

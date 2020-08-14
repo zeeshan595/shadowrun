@@ -22,7 +22,7 @@ export class PriorityTable extends React.Component<
     const content = {
       A: [
         <span>Dwarf, Ork, Troll (13)</span>,
-        <span>25</span>,
+        <span>24</span>,
         <span>Magic 4 or Resonance 4</span>,
         <span>32</span>,
         <span>450,000 ¥</span>,

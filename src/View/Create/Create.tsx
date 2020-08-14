@@ -23,8 +23,8 @@ import {
   attributes,
   CharacterAttributes,
   Attribute,
+  getAttributeTotal,
 } from "../../Model/Attribute";
-import { printpretty } from "./Elements/General";
 
 export interface ICreateProps {}
 
@@ -40,7 +40,6 @@ export interface ICreateState {
   magic: Magic;
   qualities: Quality[];
   attributes: CharacterAttributes;
-  karma: number;
 }
 
 export class Create extends React.Component<ICreateProps, ICreateState> {
@@ -63,7 +62,6 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       },
       qualities: [],
       attributes: Object.assign({}, attributes),
-      karma: 50,
     };
   }
 
@@ -85,15 +83,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     });
 
     if (key === "magic") {
-      setTimeout(() => {
-        const newAttributes = Object.assign({}, attributes);
-        newAttributes.magic.baseValue = this.getPriorityForMagic(value);
-        this.setState({
-          ...this.state,
-          attributes: newAttributes,
-        });
-        console.log(newAttributes);
-      }, 100);
+      this.updateMagic(this.state.magic);
     }
   }
 
@@ -131,30 +121,25 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
   }
 
   updateQualities(qualities: Quality[]) {
-    let karma: number = 50;
-    qualities.forEach((q) => {
-      if (q.IsLocked) {
-        if (!q.Value || q.Value <= 0) return;
-      }
-      let totalCost = q.Cost;
-      if (q.Value) totalCost *= q.Value;
-      if (q.Type == QualityType.Negative) totalCost *= -1;
-      karma -= totalCost;
-    });
-    Object.keys(this.state.attributes).forEach((key) => {
-      const attrib: Attribute = this.state.attributes[key];
-      if (attrib.karma > 0) karma -= attrib.karma * 5 + 10;
-    });
     this.setState({
       ...this.state,
       qualities,
-      karma,
     });
     this.updateAttributeMax(this.state.race, qualities);
   }
 
   updateAttributeMax(race: Race, qualities: Quality[]) {
     let localAttributes = Object.assign({}, attributes);
+
+    //reset max values
+    localAttributes.agility.MaxValue = 6;
+    localAttributes.body.MaxValue = 6;
+    localAttributes.charisma.MaxValue = 6;
+    localAttributes.intuition.MaxValue = 6;
+    localAttributes.logic.MaxValue = 6;
+    localAttributes.reaction.MaxValue = 6;
+    localAttributes.strength.MaxValue = 6;
+    localAttributes.willpower.MaxValue = 6;
 
     //racial bonuses
     if (race === Race.Dwarf) {
@@ -188,7 +173,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
         localAttributes.charisma.baseMaxValue - 1;
     }
 
-    //qualities bonus
+    //excep[tional attribute (qualities bonus)
     const exceptionalAttribute = qualities.find(
       (q) => q.Name === "Exceptional Attribute"
     );
@@ -211,6 +196,44 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
         localAttributes.willpower.MaxValue++;
     }
 
+    //excep[tional attribute (qualities bonus)
+    const impairedAttribute = qualities.find((q) => q.Name === "Impaired");
+    if (impairedAttribute !== undefined && impairedAttribute !== null) {
+      if (impairedAttribute.Attribute === AttributeType.Agility) {
+        localAttributes.agility.MaxValue -= impairedAttribute.Value;
+        if (localAttributes.agility.MaxValue < 2)
+          localAttributes.agility.MaxValue = 2;
+      } else if (impairedAttribute.Attribute === AttributeType.Body) {
+        localAttributes.body.MaxValue -= impairedAttribute.Value;
+        if (localAttributes.body.MaxValue < 2)
+          localAttributes.body.MaxValue = 2;
+      } else if (impairedAttribute.Attribute === AttributeType.Charisma) {
+        localAttributes.charisma.MaxValue -= impairedAttribute.Value;
+        if (localAttributes.charisma.MaxValue < 2)
+          localAttributes.charisma.MaxValue = 2;
+      } else if (impairedAttribute.Attribute === AttributeType.Intuition) {
+        localAttributes.intuition.MaxValue -= impairedAttribute.Value;
+        if (localAttributes.intuition.MaxValue < 2)
+          localAttributes.intuition.MaxValue = 2;
+      } else if (impairedAttribute.Attribute === AttributeType.Logic) {
+        localAttributes.logic.MaxValue -= impairedAttribute.Value;
+        if (localAttributes.logic.MaxValue < 2)
+          localAttributes.logic.MaxValue = 2;
+      } else if (impairedAttribute.Attribute === AttributeType.Reaction) {
+        localAttributes.reaction.MaxValue -= impairedAttribute.Value;
+        if (localAttributes.reaction.MaxValue < 2)
+          localAttributes.reaction.MaxValue = 2;
+      } else if (impairedAttribute.Attribute === AttributeType.Strength) {
+        localAttributes.strength.MaxValue -= impairedAttribute.Value;
+        if (localAttributes.strength.MaxValue < 2)
+          localAttributes.strength.MaxValue = 2;
+      } else if (impairedAttribute.Attribute === AttributeType.Willpower) {
+        localAttributes.willpower.MaxValue -= impairedAttribute.Value;
+        if (localAttributes.willpower.MaxValue < 2)
+          localAttributes.willpower.MaxValue = 2;
+      }
+    }
+
     setTimeout(() => {
       this.setState({
         ...this.state,
@@ -220,30 +243,9 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
   }
 
   updateAttributes(attributes: CharacterAttributes) {
-    let karma: number = 50;
-    this.state.qualities.forEach((q) => {
-      if (q.IsLocked) {
-        if (!q.Value || q.Value <= 0) return;
-      }
-      let totalCost = q.Cost;
-      if (q.Value) totalCost *= q.Value;
-      if (q.Type == QualityType.Negative) totalCost *= -1;
-      karma -= totalCost;
-    });
-    Object.keys(attributes).forEach((key) => {
-      const attrib: Attribute = attributes[key];
-      if (attrib.karma && attrib.karma > 0) {
-        let totalCost = 0;
-        if (attrib.adjustment) totalCost += attrib.adjustment;
-        if (attrib.attribute) totalCost += attrib.attribute;
-        if (attrib.karma) totalCost += attrib.karma;
-        karma -= totalCost * 5 + 10;
-      }
-    });
     this.setState({
       ...this.state,
       attributes,
-      karma,
     });
   }
 
@@ -252,6 +254,28 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       ...this.state,
       magic,
     });
+    setTimeout(() => {
+      const newAttributes = Object.assign({}, attributes);
+      if (this.state.magic.Type === MagicType.Technomancer) {
+        newAttributes.resonance.baseValue = this.getPriorityForMagic(
+          this.state.priorities.magic
+        );
+        newAttributes.magic.baseValue = 0;
+        newAttributes.magic.locked = true;
+        newAttributes.resonance.locked = false;
+      } else {
+        newAttributes.magic.baseValue = this.getPriorityForMagic(
+          this.state.priorities.magic
+        );
+        newAttributes.resonance.baseValue = 0;
+        newAttributes.magic.locked = false;
+        newAttributes.resonance.locked = true;
+      }
+      this.setState({
+        ...this.state,
+        attributes: newAttributes,
+      });
+    }, 100);
   }
 
   getPriorityForMetaType(priority: PriorityType): MetaType {
@@ -318,15 +342,84 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     else return 0;
   }
 
-  getBaseMagicValue(): number {
-    let val = this.getPriorityForMagic(this.state.priorities.magic);
-    if (this.state.magic.Type === MagicType.AspectedMagician) val++;
-    return val;
+  calculateKarma(): number {
+    let karma: number = 50;
+    this.state.qualities.forEach((q) => {
+      if (q.IsLocked) {
+        if (!q.Value || q.Value <= 0) return;
+      }
+      let totalCost = q.Cost;
+      if (q.Value) totalCost *= q.Value;
+      if (q.Type == QualityType.Negative) totalCost *= -1;
+      karma -= totalCost;
+    });
+    Object.keys(attributes).forEach((key) => {
+      const attrib: Attribute = attributes[key];
+      if (attrib.karma && attrib.karma > 0) {
+        let totalCost = getAttributeTotal(attrib);
+        for (let i = totalCost - attrib.karma - 1; i < totalCost - 1; i++) {
+          karma -= 10 + i * 5;
+        }
+      }
+    });
+    return karma;
+  }
+
+  calculateAttributePoints(): number {
+    let currentAttributesNumber = this.getPriorityForAttributes(
+      this.state.priorities.attributes
+    );
+    Object.keys(this.state.attributes).forEach((key) => {
+      if (this.state.attributes[key].attribute)
+        currentAttributesNumber -= this.state.attributes[key].attribute;
+    });
+    return currentAttributesNumber;
+  }
+
+  calculateAdjustmentPoints(): number {
+    let currentAdjustments = this.getPriorityForMetaType(
+      this.state.priorities.metaType
+    ).Points;
+    Object.keys(this.state.attributes).forEach((key) => {
+      if (this.state.attributes[key].adjustment)
+        currentAdjustments -= this.state.attributes[key].adjustment;
+    });
+    return currentAdjustments;
   }
 
   render() {
     return (
       <div className="characterCreation">
+        <div className="resources">
+          <div className="item">
+            <div className="name">Karma</div>
+            <div className="value">{this.calculateKarma()}</div>
+          </div>
+          <div className="item">
+            <div className="name">Adjustment</div>
+            <div className="value">{this.calculateAdjustmentPoints()}</div>
+          </div>
+          <div className="item">
+            <div className="name">Atributes</div>
+            <div className="value">{this.calculateAttributePoints()}</div>
+          </div>
+          <div className="item">
+            <div className="name">Skills</div>
+            <div className="value">50</div>
+          </div>
+          <div className="item">
+            <div className="name">Knowledge</div>
+            <div className="value">
+              {getAttributeTotal(this.state.attributes.logic)}
+            </div>
+          </div>
+          <div className="item">
+            <div className="name">Spells</div>
+            <div className="value">
+              {this.getPriorityForMagic(this.state.priorities.magic) * 2}
+            </div>
+          </div>
+        </div>
         <PriorityTable
           updatePriority={(key, value) => this.updatePriority(key, value)}
           priorities={this.state.priorities}
@@ -346,19 +439,10 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
         <QualitiesTable
           selectedQualities={this.state.qualities}
           updateQualities={(q) => this.updateQualities(q)}
-          karma={this.state.karma}
         />
         <AttributeTable
           attributes={this.state.attributes}
           updateAttributes={(attributes) => this.updateAttributes(attributes)}
-          maxAttribute={this.getPriorityForAttributes(
-            this.state.priorities.attributes
-          )}
-          maxAdjustment={
-            this.getPriorityForMetaType(this.state.priorities.metaType).Points
-          }
-          baseMagic={this.getBaseMagicValue()}
-          karma={this.state.karma}
         />
       </div>
     );

@@ -9,10 +9,6 @@ import {
 export interface IAttributeTableProps {
   updateAttributes: (attributes: CharacterAttributes) => void;
   attributes: CharacterAttributes;
-  karma: number;
-  maxAttribute: number;
-  maxAdjustment: number;
-  baseMagic: number;
 }
 
 export interface IAttributeTableState {}
@@ -94,21 +90,9 @@ export class AttributeTable extends React.Component<
   }
 
   render() {
-    let currentAttributesNumber = this.props.maxAttribute;
-    Object.keys(this.props.attributes).forEach((key) => {
-      if (this.props.attributes[key].attribute)
-        currentAttributesNumber -= this.props.attributes[key].attribute;
-    });
-    let currentAdjustments = this.props.maxAttribute;
-    Object.keys(this.props.attributes).forEach((key) => {
-      if (this.props.attributes[key].adjustment)
-        currentAttributesNumber -= this.props.attributes[key].adjustment;
-    });
     return (
       <div>
         <h2>Distribute your attribute & adjustment points</h2>
-        Karma: {this.props.karma}, Attribute: {currentAttributesNumber},
-        Adjustments: {currentAdjustments}
         <table className="attributeTable">
           <thead>
             <tr>
@@ -128,11 +112,17 @@ export class AttributeTable extends React.Component<
               if (attrib.adjustment !== undefined) {
                 adjust = (
                   <div>
-                    <button onClick={() => this.removeAttributeWithAdj(key)}>
+                    <button
+                      disabled={attrib.locked}
+                      onClick={() => this.removeAttributeWithAdj(key)}
+                    >
                       -
                     </button>
                     {attrib.adjustment}
-                    <button onClick={() => this.addAttributeWithAdj(key)}>
+                    <button
+                      disabled={attrib.locked}
+                      onClick={() => this.addAttributeWithAdj(key)}
+                    >
                       +
                     </button>
                   </div>
@@ -143,9 +133,19 @@ export class AttributeTable extends React.Component<
               if (attrib.attribute !== undefined) {
                 attrVal = (
                   <div>
-                    <button onClick={() => this.removeAttribute(key)}>-</button>
+                    <button
+                      disabled={attrib.locked}
+                      onClick={() => this.removeAttribute(key)}
+                    >
+                      -
+                    </button>
                     {attrib.attribute}
-                    <button onClick={() => this.addAttribute(key)}>+</button>
+                    <button
+                      disabled={attrib.locked}
+                      onClick={() => this.addAttribute(key)}
+                    >
+                      +
+                    </button>
                   </div>
                 );
               }
@@ -154,11 +154,17 @@ export class AttributeTable extends React.Component<
               if (attrib.karma !== undefined) {
                 karmaVal = (
                   <div>
-                    <button onClick={() => this.removeAttributeWithKarma(key)}>
+                    <button
+                      disabled={attrib.locked}
+                      onClick={() => this.removeAttributeWithKarma(key)}
+                    >
                       -
                     </button>
                     {attrib.karma}
-                    <button onClick={() => this.addAttributeWithKarma(key)}>
+                    <button
+                      disabled={attrib.locked}
+                      onClick={() => this.addAttributeWithKarma(key)}
+                    >
                       +
                     </button>
                   </div>

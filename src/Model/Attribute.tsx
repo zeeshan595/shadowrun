@@ -8,6 +8,7 @@ export interface Attribute {
   baseMaxValue: number;
   MaxValue: number;
   baseValue?: number;
+  locked?: boolean;
 }
 
 export interface CharacterAttributes {
@@ -25,7 +26,7 @@ export interface CharacterAttributes {
 }
 
 export const getAttributeTotal = (attribute: Attribute): number => {
-  let total: number = 0;
+  let total: number = 1;
   if (attribute.baseValue) total += attribute.baseValue;
   if (attribute.adjustment) total += attribute.adjustment;
   if (attribute.attribute) total += attribute.attribute;
@@ -114,5 +115,7 @@ export const attributes: CharacterAttributes = {
     karma: 0,
     baseMaxValue: 6,
     MaxValue: 6,
+    baseValue: 0,
+    locked: true,
   },
 };

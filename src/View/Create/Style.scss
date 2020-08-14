@@ -2,6 +2,23 @@
   width: 1000px;
   margin-left: auto;
   margin-right: auto;
+
+  .resources {
+    position: fixed;
+    bottom: 0;
+    background-color: rgba(252, 25, 192, 1);
+    z-index: 999;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+    .item {
+      display: inline-block;
+      text-align: center;
+      margin-left: 20px;
+      margin-right: 20px;
+      padding: 20px;
+    }
+  }
 }
 .priorityTable {
   width: 100%;
