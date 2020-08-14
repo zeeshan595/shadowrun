@@ -2,6 +2,8 @@ html {
   font-family: "Open Sans", sans-serif !important;
   body {
     margin-bottom: 100px;
+    background-color: black;
+    color: white;
   }
 }
 
@@ -12,13 +14,13 @@ button {
   margin: 10px;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 3px 1px rgba(252, 25, 192, 0.3);
   cursor: pointer;
   transition: 0.3s;
   font-size: 18px;
 
   &:hover {
-    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px 3px rgba(252, 25, 192, 0.3);
   }
 }
 
@@ -134,7 +136,7 @@ select {
   width: 200px;
   height: 30px;
   font-size: 16px;
-  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.3);
   background-color: white;
   border-radius: 5px;
   outline: 0;
@@ -145,7 +147,7 @@ select {
   margin-bottom: 10px;
 
   &:hover {
-    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px 3px rgba(252, 25, 192, 0.3);
   }
 }
 

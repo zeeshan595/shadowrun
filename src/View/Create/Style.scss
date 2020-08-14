@@ -40,7 +40,7 @@
 .raceDescription {
   display: inline-block;
   vertical-align: top;
-  width: 700px;
+  width: 685px;
 
   h4 {
     margin-top: 5px;
@@ -114,14 +114,13 @@
 
     .quality {
       width: calc(100% - 42px);
-      background-color: rgb(250, 250, 250);
       padding: 20px;
       border-bottom: 1px solid black;
       cursor: pointer;
       transition: 0.3s;
 
       &:hover {
-        box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 10px 2px rgba(252, 25, 192, 0.3);
       }
       &.selected {
         background-color: rgba(252, 25, 192, 1);
@@ -152,5 +151,32 @@
     display: inline-block;
     width: 215px;
     font-size: 14px;
+  }
+}
+
+.attributeTable {
+  vertical-align: top;
+  display: inline-block;
+  border-spacing: 0;
+  border-collapse: collapse;
+
+  td {
+    padding: 10px;
+  }
+  thead {
+    tr {
+      td {
+        text-align: center;
+        color: rgba(252, 25, 192, 1);
+        margin-bottom: 20px;
+      }
+    }
+  }
+  tbody {
+    tr {
+      td {
+        text-align: center;
+      }
+    }
   }
 }

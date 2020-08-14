@@ -14,6 +14,7 @@ import { printpretty } from "./General";
 export interface IQualitiesProps {
   selectedQualities: Quality[];
   updateQualities: (qualities: Quality[]) => void;
+  karma: number;
 }
 
 export interface IQualitiesState {
@@ -78,17 +79,6 @@ export class QualitiesTable extends React.Component<
   }
 
   render() {
-    let karma: number = 50;
-    this.props.selectedQualities.forEach((q) => {
-      if (q.IsLocked) {
-        if (!q.Value || q.Value <= 0) return;
-      }
-      let totalCost = q.Cost;
-      if (q.Value) totalCost *= q.Value;
-      if (q.Type == QualityType.Negative) totalCost *= -1;
-      karma -= totalCost;
-    });
-
     const positiveQualities = Qualities.filter(
       (q) =>
         q.Type == this.state.typeView &&
@@ -109,7 +99,7 @@ export class QualitiesTable extends React.Component<
           <option value={QualityType.Positive}>Positive</option>
           <option value={QualityType.Negative}>Negative</option>
         </select>
-        <span className="karamCost">Karma: {karma}</span>
+        <span className="karamCost">Karma: {this.props.karma}</span>
         <br />
         <div className="qualityList">
           {positiveQualities.map((q, index) => (
