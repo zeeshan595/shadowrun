@@ -4,13 +4,14 @@
   margin-right: auto;
 
   .resources {
-    position: fixed;
-    bottom: 0;
     background-color: rgba(252, 25, 192, 1);
+    position: fixed;
     z-index: 999;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    left: calc(50% - 564px);
+    left: 0;
+    top: 0;
+    width: 150px;
+    text-align: center;
+    border-bottom-right-radius: 20px;
 
     .item {
       display: inline-block;

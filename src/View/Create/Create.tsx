@@ -29,6 +29,7 @@ import { SkillsTable } from "./Elements/SkillsTable";
 import { Skill } from "../../Model/Skills";
 import { KnowledgeTable } from "./Elements/KnowledgeTable";
 import { Knowledge, KnowledgeType, LanguageType } from "../../Model/Knowledge";
+import { SpellsTable } from "./Elements/SpellsTable";
 
 export interface ICreateProps {}
 
@@ -451,10 +452,18 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
   }
 
   calculateSpellPoints(): number {
+    if (this.state.magic && this.state.magic.Type === MagicType.Technomancer)
+      return 0;
     let val: number = this.getPriorityForMagic(this.state.priorities.magic);
     if (this.state.magic && this.state.magic.Adept)
       val -= this.state.magic.Adept;
     return val * 2;
+  }
+
+  calculateResonancePoints(): number {
+    if (this.state.magic && this.state.magic.Type !== MagicType.Technomancer)
+      return 0;
+    return this.getPriorityForMagic(this.state.priorities.magic) * 2;
   }
 
   render() {
@@ -484,6 +493,10 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
           <div className="item">
             <div className="name">Spells</div>
             <div className="value">{this.calculateSpellPoints()}</div>
+          </div>
+          <div className="item">
+            <div className="name">Resonance</div>
+            <div className="value">{this.calculateResonancePoints()}</div>
           </div>
           <div className="item">
             <div className="name">Adept</div>
@@ -530,6 +543,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
           knowledge={this.state.knowledge}
           updateKnowledge={(k) => this.updateKnowledge(k)}
         />
+        <SpellsTable />
       </div>
     );
   }

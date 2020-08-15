@@ -26,10 +26,9 @@ export class KnowledgeTable extends React.Component<
   }
 
   updateKnowledge(index: number, knowledge: Knowledge) {
-    this.props.updateKnowledge([
-      ...this.props.knowledge.filter((_, i) => i !== index),
-      knowledge,
-    ]);
+    const temp = this.props.knowledge;
+    temp[index] = knowledge;
+    this.props.updateKnowledge(temp);
   }
 
   render() {
