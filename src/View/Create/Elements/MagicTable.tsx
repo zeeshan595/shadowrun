@@ -222,6 +222,10 @@ export class MagicTable extends React.Component<
                     this.props.updateMagic({
                       ...this.props.magic,
                       Type: MagicType[type],
+                      Adept:
+                        MagicType[type] === MagicType.Adept
+                          ? this.props.magicAmount
+                          : 0,
                     })
                   }
                 />

@@ -450,6 +450,13 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     return points;
   }
 
+  calculateSpellPoints(): number {
+    let val: number = this.getPriorityForMagic(this.state.priorities.magic);
+    if (this.state.magic && this.state.magic.Adept)
+      val -= this.state.magic.Adept;
+    return val * 2;
+  }
+
   render() {
     return (
       <div className="characterCreation">
@@ -476,9 +483,11 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
           </div>
           <div className="item">
             <div className="name">Spells</div>
-            <div className="value">
-              {this.getPriorityForMagic(this.state.priorities.magic) * 2}
-            </div>
+            <div className="value">{this.calculateSpellPoints()}</div>
+          </div>
+          <div className="item">
+            <div className="name">Adept</div>
+            <div className="value">{this.state.magic.Adept}</div>
           </div>
           <div className="item">
             <div className="name">Resources</div>
