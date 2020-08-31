@@ -223,7 +223,6 @@
       }
       &.selected {
         background-color: rgba(252, 25, 192, 1);
-        z-index: 99;
       }
     }
   }
@@ -258,4 +257,33 @@
       text-align: right;
     }
   }
+}
+
+.spellsContainer {
+  vertical-align: middle;
+  display: inline-block;
+  overflow-y: scroll;
+  width: 300px;
+  height: 500px;
+  border: 1px solid white;
+
+  .spell {
+    padding: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      box-shadow: 0 0 10px 2px rgba(252, 25, 192, 0.3);
+    }
+    &.selected {
+      background-color: rgba(252, 25, 192, 1);
+    }
+  }
+}
+
+.spellDescription {
+  display: inline-block;
+  vertical-align: top;
+  width: 230px;
+  margin-left: 20px;
 }

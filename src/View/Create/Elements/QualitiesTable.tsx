@@ -86,6 +86,7 @@ export class QualitiesTable extends React.Component<
     return (
       <div className="qualityContainer">
         <h2>Select Qualities</h2>
+        <h6>You can only have 7 selected qualities, not including your race qualities.</h6>
         <select
           value={this.state.typeView}
           onChange={(evt) =>

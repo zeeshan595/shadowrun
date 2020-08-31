@@ -30,6 +30,7 @@ import { Skill } from "../../Model/Skills";
 import { KnowledgeTable } from "./Elements/KnowledgeTable";
 import { Knowledge, KnowledgeType, LanguageType } from "../../Model/Knowledge";
 import { SpellsTable } from "./Elements/SpellsTable";
+import { Spell, CastType } from "../../Model/Spells";
 
 export interface ICreateProps {}
 
@@ -47,6 +48,7 @@ export interface ICreateState {
   attributes: CharacterAttributes;
   skills: Skill[];
   knowledge: Knowledge[];
+  spells: Spell[];
 }
 
 export class Create extends React.Component<ICreateProps, ICreateState> {
@@ -78,6 +80,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
           custom: "English",
         },
       ],
+      spells: [],
     };
   }
 
@@ -96,6 +99,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     this.setState({
       ...this.state,
       priorities: currentPriority,
+      spells: [],
     });
 
     if (key === "magic") {
@@ -290,6 +294,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       this.setState({
         ...this.state,
         attributes: newAttributes,
+        spells: [],
       });
     }, 100);
   }
@@ -305,6 +310,13 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     this.setState({
       ...this.state,
       knowledge,
+    });
+  }
+
+  updateSpells(spells: Spell[]) {
+    this.setState({
+      ...this.state,
+      spells,
     });
   }
 
@@ -457,7 +469,17 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     let val: number = this.getPriorityForMagic(this.state.priorities.magic);
     if (this.state.magic && this.state.magic.Adept)
       val -= this.state.magic.Adept;
-    return val * 2;
+    val *= 2;
+    this.state.spells.forEach((spell) => {
+      if (
+        spell.cast !== undefined &&
+        spell.cast !== null &&
+        spell.cast == CastType.Both
+      )
+        val -= 2;
+      else val--;
+    });
+    return val;
   }
 
   calculateResonancePoints(): number {
@@ -543,7 +565,12 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
           knowledge={this.state.knowledge}
           updateKnowledge={(k) => this.updateKnowledge(k)}
         />
-        <SpellsTable />
+        <SpellsTable
+          spells={this.state.spells}
+          updateSpells={(s) => this.updateSpells(s)}
+          magicPriority={this.getPriorityForMagic(this.state.priorities.magic)}
+          magic={this.state.magic}
+        />
       </div>
     );
   }
