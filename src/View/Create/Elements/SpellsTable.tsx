@@ -1,11 +1,20 @@
 import * as React from "react";
-import { Spell, spells, SpellCategory, CastType } from "../../../Model/Spells";
+import {
+  Spell,
+  spells,
+  SpellCategory,
+  CastType,
+  SpellRange,
+  SpellConstructionType,
+  SpellDuration,
+} from "../../../Model/Spells";
 import {
   Magic,
   MagicType,
   MagicTradition,
   MagicSkills,
 } from "../../../Model/Magic";
+import { printpretty } from "./General";
 
 export interface ISpellsTableProps {
   spells: Spell[];
@@ -100,13 +109,77 @@ export class SpellsTable extends React.Component<
     }
 
     let description = null;
-    if (this.state.currentlySelected !== null)
+    if (this.state.currentlySelected !== null) {
+      const spellStats: JSX.Element[] = [
+        <React.Fragment>
+          Type:{" "}
+          <span className="primaryColor">
+            {printpretty(
+              SpellConstructionType[this.state.currentlySelected.type]
+            )}
+          </span>
+        </React.Fragment>,
+        <React.Fragment>
+          Range:{" "}
+          <span className="primaryColor">
+            {printpretty(SpellRange[this.state.currentlySelected.range])}
+          </span>
+        </React.Fragment>,
+        <React.Fragment>
+          Duration:{" "}
+          <span className="primaryColor">
+            {printpretty(SpellDuration[this.state.currentlySelected.duration])}
+          </span>
+        </React.Fragment>,
+        <React.Fragment>
+          Drain:{" "}
+          <span className="primaryColor">
+            {this.state.currentlySelected.drainValue}
+          </span>
+        </React.Fragment>,
+      ];
+      if (this.state.currentlySelected.category === SpellCategory.Combat) {
+        spellStats.push(
+          <React.Fragment>
+            Damage:{" "}
+            <span className="primaryColor">
+              {this.state.currentlySelected.damage}
+            </span>
+          </React.Fragment>
+        );
+        spellStats.push(
+          <React.Fragment>
+            Is Direct:{" "}
+            <span className="primaryColor">
+              {this.state.currentlySelected.isDirect ? "True" : "False"}
+            </span>
+          </React.Fragment>
+        );
+      } else if (
+        this.state.currentlySelected.category == SpellCategory.Illusion
+      ) {
+        spellStats.push(
+          <React.Fragment>
+            Is Multi-Sense:{" "}
+            <span className="primaryColor">
+              {this.state.currentlySelected.isMultiSense ? "True" : "False"}
+            </span>
+          </React.Fragment>
+        );
+      }
       description = (
         <div className="spellDescription">
           <h2>{this.state.currentlySelected.name}</h2>
+          {spellStats.map((s, i) => (
+            <React.Fragment key={i}>
+              {s}
+              <br />
+            </React.Fragment>
+          ))}
           {this.state.currentlySelected.description}
         </div>
       );
+    }
 
     return (
       <div>

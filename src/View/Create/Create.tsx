@@ -31,6 +31,7 @@ import { KnowledgeTable } from "./Elements/KnowledgeTable";
 import { Knowledge, KnowledgeType, LanguageType } from "../../Model/Knowledge";
 import { SpellsTable } from "./Elements/SpellsTable";
 import { Spell, CastType } from "../../Model/Spells";
+import { RitualsTable } from "./Elements/RitualsTable";
 
 export interface ICreateProps {}
 
@@ -569,6 +570,11 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
           spells={this.state.spells}
           updateSpells={(s) => this.updateSpells(s)}
           magicPriority={this.getPriorityForMagic(this.state.priorities.magic)}
+          magic={this.state.magic}
+        />
+        <RitualsTable
+          magicPriority={this.getPriorityForMagic(this.state.priorities.magic)}
+          updateRituals={(r) => {}}
           magic={this.state.magic}
         />
       </div>
