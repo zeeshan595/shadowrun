@@ -32,6 +32,7 @@ import { Knowledge, KnowledgeType, LanguageType } from "../../Model/Knowledge";
 import { SpellsTable } from "./Elements/SpellsTable";
 import { Spell, CastType } from "../../Model/Spells";
 import { RitualsTable } from "./Elements/RitualsTable";
+import { Ritual } from "../../Model/Rituals";
 
 export interface ICreateProps {}
 
@@ -50,6 +51,7 @@ export interface ICreateState {
   skills: Skill[];
   knowledge: Knowledge[];
   spells: Spell[];
+  rituals: Ritual[];
 }
 
 export class Create extends React.Component<ICreateProps, ICreateState> {
@@ -82,6 +84,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
         },
       ],
       spells: [],
+      rituals: [],
     };
   }
 
@@ -321,6 +324,13 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     });
   }
 
+  updateRituals(rituals: Ritual[]) {
+    this.setState({
+      ...this.state,
+      rituals,
+    });
+  }
+
   getPriorityForMetaType(priority: PriorityType): MetaType {
     if (priority === PriorityType.A)
       return {
@@ -480,6 +490,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
         val -= 2;
       else val--;
     });
+    val -= this.state.rituals.length;
     return val;
   }
 
@@ -573,8 +584,9 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
           magic={this.state.magic}
         />
         <RitualsTable
+          rituals={this.state.rituals}
           magicPriority={this.getPriorityForMagic(this.state.priorities.magic)}
-          updateRituals={(r) => {}}
+          updateRituals={(r) => this.updateRituals(r)}
           magic={this.state.magic}
         />
       </div>

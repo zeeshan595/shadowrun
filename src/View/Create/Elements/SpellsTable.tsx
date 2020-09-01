@@ -43,6 +43,7 @@ export class SpellsTable extends React.Component<
   addSpell() {
     if (this.state.currentlySelected === null) return;
     const spell = this.state.currentlySelected;
+    if (this.props.spells.findIndex((s) => s === spell) !== -1) return;
     if (spell.cast === undefined || spell.cast === null) {
       if (this.props.magic.Type === MagicType.Magician) {
         spell.cast = CastType.Sorcery;
@@ -63,6 +64,11 @@ export class SpellsTable extends React.Component<
   }
   removeSpell() {
     if (this.state.currentlySelected === null) return;
+    if (
+      this.props.spells.findIndex((s) => s === this.state.currentlySelected) ===
+      -1
+    )
+      return;
     this.props.updateSpells([
       ...this.props.spells.filter((s) => s !== this.state.currentlySelected),
     ]);
