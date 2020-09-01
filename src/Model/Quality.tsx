@@ -101,7 +101,7 @@ export interface Quality {
   Value?: number;
 }
 
-export const Qualities: Quality[] = [
+export const qualities: Quality[] = [
   //===============
   //===positives===
   //===============

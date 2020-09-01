@@ -14,7 +14,7 @@ import {
   MagicTradition,
   MagicSkills,
 } from "../../../Model/Magic";
-import { printpretty } from "./General";
+import { printpretty } from "../General";
 
 export interface ISpellsTableProps {
   spells: Spell[];
@@ -45,15 +45,15 @@ export class SpellsTable extends React.Component<
     const spell = this.state.currentlySelected;
     if (this.props.spells.findIndex((s) => s === spell) !== -1) return;
     if (spell.cast === undefined || spell.cast === null) {
-      if (this.props.magic.Type === MagicType.Magician) {
+      if (this.props.magic.type === MagicType.Magician) {
         spell.cast = CastType.Sorcery;
-      } else if (this.props.magic.Type === MagicType.MysticAdept) {
+      } else if (this.props.magic.type === MagicType.MysticAdept) {
         spell.cast = CastType.Sorcery;
-      } else if (this.props.magic.Type === MagicType.AspectedMagician) {
-        if (this.props.magic.MagicSkillLimit === MagicSkills.Sorcery) {
+      } else if (this.props.magic.type === MagicType.AspectedMagician) {
+        if (this.props.magic.magicSkillLimit === MagicSkills.Sorcery) {
           spell.cast = CastType.Sorcery;
         } else if (
-          this.props.magic.MagicSkillLimit === MagicSkills.Enchanting
+          this.props.magic.magicSkillLimit === MagicSkills.Enchanting
         ) {
           spell.cast = CastType.Alchemy;
         }
@@ -97,19 +97,19 @@ export class SpellsTable extends React.Component<
     if (this.props.magicPriority === 0) {
       return null;
     }
-    if (this.props.magic.Type === MagicType.Technomancer) {
+    if (this.props.magic.type === MagicType.Technomancer) {
       return null;
     }
-    if (this.props.magic.Type === MagicType.Adept) {
+    if (this.props.magic.type === MagicType.Adept) {
       return null;
     }
-    if (this.props.magic.Type === MagicType.AspectedMagician) {
-      if (this.props.magic.MagicSkillLimit === MagicSkills.Conjuring) {
+    if (this.props.magic.type === MagicType.AspectedMagician) {
+      if (this.props.magic.magicSkillLimit === MagicSkills.Conjuring) {
         return null;
       }
     }
-    if (this.props.magic.Type === MagicType.MysticAdept) {
-      if (this.props.magic.Adept >= this.props.magicPriority) {
+    if (this.props.magic.type === MagicType.MysticAdept) {
+      if (this.props.magic.adept >= this.props.magicPriority) {
         return null;
       }
     }
@@ -233,9 +233,9 @@ export class SpellsTable extends React.Component<
           {this.props.spells.map((spell, index) => {
             let alchemy = null;
             if (
-              this.props.magic.Type !== MagicType.Adept &&
-              this.props.magic.Type !== MagicType.AspectedMagician &&
-              this.props.magic.Type !== MagicType.Technomancer
+              this.props.magic.type !== MagicType.Adept &&
+              this.props.magic.type !== MagicType.AspectedMagician &&
+              this.props.magic.type !== MagicType.Technomancer
             ) {
               alchemy = (
                 <h6>

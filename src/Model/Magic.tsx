@@ -19,8 +19,8 @@ export enum MagicType {
 }
 
 export interface Magic {
-  Type: MagicType;
-  Tradition: MagicTradition;
-  Adept: number;
-  MagicSkillLimit: MagicSkills;
+  type: MagicType;
+  tradition: MagicTradition;
+  adept: number;
+  magicSkillLimit: MagicSkills;
 }

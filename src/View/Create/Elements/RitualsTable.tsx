@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Magic, MagicType, MagicSkills } from "../../../Model/Magic";
 import { Ritual, rituals } from "../../../Model/Rituals";
-import { printpretty } from "./General";
+import { printpretty } from "../General";
 
 export interface IRitualsTableProps {
   magicPriority: number;
@@ -49,15 +49,18 @@ export class RitualsTable extends React.Component<
   }
 
   render() {
-    if (this.props.magic.Type == MagicType.AspectedMagician) {
-      if (this.props.magic.MagicSkillLimit != MagicSkills.Sorcery) {
+    if (this.props.magicPriority < 1) {
+      return null;
+    }
+    if (this.props.magic.type == MagicType.AspectedMagician) {
+      if (this.props.magic.magicSkillLimit != MagicSkills.Sorcery) {
         return null;
       }
     }
-    if (this.props.magic.Type == MagicType.Adept) {
+    if (this.props.magic.type == MagicType.Adept) {
       return null;
     }
-    if (this.props.magic.Type == MagicType.Technomancer) {
+    if (this.props.magic.type == MagicType.Technomancer) {
       return null;
     }
 

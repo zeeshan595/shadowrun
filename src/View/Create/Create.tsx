@@ -14,7 +14,7 @@ import { Race, MetaType } from "../../Model/MetaType";
 import { QualitiesTable } from "./Elements/QualitiesTable";
 import {
   Quality,
-  Qualities,
+  qualities,
   AttributeType,
   QualityType,
 } from "../../Model/Quality";
@@ -33,6 +33,15 @@ import { SpellsTable } from "./Elements/SpellsTable";
 import { Spell, CastType } from "../../Model/Spells";
 import { RitualsTable } from "./Elements/RitualsTable";
 import { Ritual } from "../../Model/Rituals";
+import {
+  getPriorityForSkills,
+  getPriorityForMagic,
+  getPriorityForMetaType,
+  getPriorityForAttributes,
+  getPriorityForResources,
+  computeBaseAttributes,
+  computeBaseQualities,
+} from "./General";
 
 export interface ICreateProps {}
 
@@ -65,12 +74,12 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
         skills: PriorityType.D,
         resources: PriorityType.E,
       },
-      race: Race.Human,
+      race: Race.Dwarf,
       magic: {
-        Type: MagicType.Magician,
-        Tradition: MagicTradition.Hermeticism,
-        MagicSkillLimit: MagicSkills.None,
-        Adept: 0,
+        type: MagicType.Magician,
+        tradition: MagicTradition.Hermeticism,
+        magicSkillLimit: MagicSkills.None,
+        adept: 0,
       },
       qualities: [],
       attributes: Object.assign({}, attributes),
@@ -103,165 +112,134 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     this.setState({
       ...this.state,
       priorities: currentPriority,
+      magic: {
+        type: MagicType.Magician,
+        tradition: MagicTradition.Hermeticism,
+        magicSkillLimit: MagicSkills.None,
+        adept: 0,
+      },
+      race: Race.Dwarf,
+      qualities: computeBaseQualities(Race.Dwarf),
       spells: [],
+      rituals: [],
+      skills: [],
+      knowledge: [
+        {
+          type: KnowledgeType.Language,
+          isNativeLanguage: true,
+          langType: LanguageType.Expert,
+          custom: "English",
+        },
+      ],
     });
 
-    if (key === "magic") {
-      this.updateMagic(this.state.magic);
-    }
+    setTimeout(() => {
+      this.setState({
+        ...this.state,
+        attributes: computeBaseAttributes(
+          getPriorityForMagic(this.state.priorities.magic),
+          this.state.magic.type,
+          this.state.race,
+          this.state.qualities
+        ),
+      });
+    }, 10);
   }
 
   updateMetatype(race: Race) {
-    //qualities
-    const defaultQualities: Quality[] = [];
-    if (race == Race.Dwarf) {
-      defaultQualities.push({
-        ...Qualities.find((q) => q.Name === "Toxin Resistance"),
-        IsLocked: true,
+    this.setState({
+      ...this.state,
+      magic: {
+        type: MagicType.Magician,
+        tradition: MagicTradition.Hermeticism,
+        magicSkillLimit: MagicSkills.None,
+        adept: 0,
+      },
+      race,
+      qualities: computeBaseQualities(race),
+      spells: [],
+      rituals: [],
+      skills: [],
+      knowledge: [
+        {
+          type: KnowledgeType.Language,
+          isNativeLanguage: true,
+          langType: LanguageType.Expert,
+          custom: "English",
+        },
+      ],
+    });
+
+    setTimeout(() => {
+      this.setState({
+        ...this.state,
+        attributes: computeBaseAttributes(
+          getPriorityForMagic(this.state.priorities.magic),
+          this.state.magic.type,
+          this.state.race,
+          this.state.qualities
+        ),
       });
-    }
-    if (race == Race.Dwarf || race == Race.Troll) {
-      defaultQualities.push({
-        ...Qualities.find((q) => q.Name === "Thermographic Vision"),
-        IsLocked: true,
+    }, 10);
+  }
+
+  updateMagic(magic: Magic) {
+    this.setState({
+      ...this.state,
+      magic,
+      qualities: computeBaseQualities(this.state.race),
+      spells: [],
+      rituals: [],
+      skills: [],
+      knowledge: [
+        {
+          type: KnowledgeType.Language,
+          isNativeLanguage: true,
+          langType: LanguageType.Expert,
+          custom: "English",
+        },
+      ],
+    });
+
+    setTimeout(() => {
+      this.setState({
+        ...this.state,
+        attributes: computeBaseAttributes(
+          getPriorityForMagic(this.state.priorities.magic),
+          this.state.magic.type,
+          this.state.race,
+          this.state.qualities
+        ),
       });
-    }
-    if (race == Race.Elf || race == Race.Ork) {
-      defaultQualities.push({
-        ...Qualities.find((q) => q.Name === "Low-Light Vision"),
-        IsLocked: true,
-      });
-    }
-    if (race == Race.Ork || race == Race.Troll) {
-      const lockedValue = race === Race.Ork ? 1 : 2;
-      defaultQualities.push({
-        ...Qualities.find((q) => q.Name === "Built Tough"),
-        IsLocked: true,
-        LockedValue: lockedValue,
-      });
-    }
-    this.setState({ ...this.state, race: race, qualities: defaultQualities });
-    this.updateAttributeMax(race, this.state.qualities);
+    }, 10);
   }
 
   updateQualities(qualities: Quality[]) {
     this.setState({
       ...this.state,
       qualities,
+      spells: [],
+      rituals: [],
+      skills: [],
+      knowledge: [
+        {
+          type: KnowledgeType.Language,
+          isNativeLanguage: true,
+          langType: LanguageType.Expert,
+          custom: "English",
+        },
+      ],
     });
-    this.updateAttributeMax(this.state.race, qualities);
-  }
-
-  updateAttributeMax(race: Race, qualities: Quality[]) {
-    let localAttributes = Object.assign({}, attributes);
-
-    //reset max values
-    localAttributes.agility.MaxValue = 6;
-    localAttributes.body.MaxValue = 6;
-    localAttributes.charisma.MaxValue = 6;
-    localAttributes.intuition.MaxValue = 6;
-    localAttributes.logic.MaxValue = 6;
-    localAttributes.reaction.MaxValue = 6;
-    localAttributes.strength.MaxValue = 6;
-    localAttributes.willpower.MaxValue = 6;
-
-    //racial bonuses
-    if (race === Race.Dwarf) {
-      localAttributes.body.MaxValue = localAttributes.body.baseMaxValue + 1;
-      localAttributes.reaction.MaxValue =
-        localAttributes.reaction.baseMaxValue - 1;
-      localAttributes.strength.MaxValue =
-        localAttributes.strength.baseMaxValue + 2;
-      localAttributes.willpower.MaxValue =
-        localAttributes.willpower.baseMaxValue + 1;
-    } else if (race === Race.Elf) {
-      localAttributes.agility.MaxValue =
-        localAttributes.agility.baseMaxValue + 1;
-      localAttributes.charisma.MaxValue =
-        localAttributes.charisma.baseMaxValue + 2;
-    } else if (race === Race.Human) {
-      localAttributes.edge.MaxValue = localAttributes.edge.baseMaxValue + 1;
-    } else if (race === Race.Ork) {
-      localAttributes.body.MaxValue = localAttributes.body.baseMaxValue + 2;
-      localAttributes.strength.MaxValue =
-        localAttributes.strength.baseMaxValue + 2;
-      localAttributes.charisma.MaxValue =
-        localAttributes.charisma.baseMaxValue - 1;
-    } else if (race === Race.Troll) {
-      localAttributes.body.MaxValue = localAttributes.body.baseMaxValue + 3;
-      localAttributes.agility.MaxValue =
-        localAttributes.agility.baseMaxValue - 1;
-      localAttributes.strength.MaxValue =
-        localAttributes.strength.baseMaxValue + 3;
-      localAttributes.charisma.MaxValue =
-        localAttributes.charisma.baseMaxValue - 1;
-    }
-
-    //excep[tional attribute (qualities bonus)
-    const exceptionalAttribute = qualities.find(
-      (q) => q.Name === "Exceptional Attribute"
-    );
-    if (exceptionalAttribute !== undefined && exceptionalAttribute !== null) {
-      if (exceptionalAttribute.Attribute === AttributeType.Agility)
-        localAttributes.agility.MaxValue++;
-      else if (exceptionalAttribute.Attribute === AttributeType.Body)
-        localAttributes.body.MaxValue++;
-      else if (exceptionalAttribute.Attribute === AttributeType.Charisma)
-        localAttributes.charisma.MaxValue++;
-      else if (exceptionalAttribute.Attribute === AttributeType.Intuition)
-        localAttributes.intuition.MaxValue++;
-      else if (exceptionalAttribute.Attribute === AttributeType.Logic)
-        localAttributes.logic.MaxValue++;
-      else if (exceptionalAttribute.Attribute === AttributeType.Reaction)
-        localAttributes.reaction.MaxValue++;
-      else if (exceptionalAttribute.Attribute === AttributeType.Strength)
-        localAttributes.strength.MaxValue++;
-      else if (exceptionalAttribute.Attribute === AttributeType.Willpower)
-        localAttributes.willpower.MaxValue++;
-    }
-
-    //excep[tional attribute (qualities bonus)
-    const impairedAttribute = qualities.find((q) => q.Name === "Impaired");
-    if (impairedAttribute !== undefined && impairedAttribute !== null) {
-      if (impairedAttribute.Attribute === AttributeType.Agility) {
-        localAttributes.agility.MaxValue -= impairedAttribute.Value;
-        if (localAttributes.agility.MaxValue < 2)
-          localAttributes.agility.MaxValue = 2;
-      } else if (impairedAttribute.Attribute === AttributeType.Body) {
-        localAttributes.body.MaxValue -= impairedAttribute.Value;
-        if (localAttributes.body.MaxValue < 2)
-          localAttributes.body.MaxValue = 2;
-      } else if (impairedAttribute.Attribute === AttributeType.Charisma) {
-        localAttributes.charisma.MaxValue -= impairedAttribute.Value;
-        if (localAttributes.charisma.MaxValue < 2)
-          localAttributes.charisma.MaxValue = 2;
-      } else if (impairedAttribute.Attribute === AttributeType.Intuition) {
-        localAttributes.intuition.MaxValue -= impairedAttribute.Value;
-        if (localAttributes.intuition.MaxValue < 2)
-          localAttributes.intuition.MaxValue = 2;
-      } else if (impairedAttribute.Attribute === AttributeType.Logic) {
-        localAttributes.logic.MaxValue -= impairedAttribute.Value;
-        if (localAttributes.logic.MaxValue < 2)
-          localAttributes.logic.MaxValue = 2;
-      } else if (impairedAttribute.Attribute === AttributeType.Reaction) {
-        localAttributes.reaction.MaxValue -= impairedAttribute.Value;
-        if (localAttributes.reaction.MaxValue < 2)
-          localAttributes.reaction.MaxValue = 2;
-      } else if (impairedAttribute.Attribute === AttributeType.Strength) {
-        localAttributes.strength.MaxValue -= impairedAttribute.Value;
-        if (localAttributes.strength.MaxValue < 2)
-          localAttributes.strength.MaxValue = 2;
-      } else if (impairedAttribute.Attribute === AttributeType.Willpower) {
-        localAttributes.willpower.MaxValue -= impairedAttribute.Value;
-        if (localAttributes.willpower.MaxValue < 2)
-          localAttributes.willpower.MaxValue = 2;
-      }
-    }
 
     setTimeout(() => {
       this.setState({
         ...this.state,
-        attributes: localAttributes,
+        attributes: computeBaseAttributes(
+          getPriorityForMagic(this.state.priorities.magic),
+          this.state.magic.type,
+          this.state.race,
+          this.state.qualities
+        ),
       });
     }, 10);
   }
@@ -270,43 +248,34 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     this.setState({
       ...this.state,
       attributes,
+      spells: [],
+      rituals: [],
+      skills: [],
+      knowledge: [
+        {
+          type: KnowledgeType.Language,
+          isNativeLanguage: true,
+          langType: LanguageType.Expert,
+          custom: "English",
+        },
+      ],
     });
-  }
-
-  updateMagic(magic: Magic) {
-    this.setState({
-      ...this.state,
-      magic,
-    });
-    setTimeout(() => {
-      const newAttributes = Object.assign({}, attributes);
-      if (this.state.magic.Type === MagicType.Technomancer) {
-        newAttributes.resonance.baseValue = this.getPriorityForMagic(
-          this.state.priorities.magic
-        );
-        newAttributes.magic.baseValue = 0;
-        newAttributes.magic.locked = true;
-        newAttributes.resonance.locked = false;
-      } else {
-        newAttributes.magic.baseValue = this.getPriorityForMagic(
-          this.state.priorities.magic
-        );
-        newAttributes.resonance.baseValue = 0;
-        newAttributes.magic.locked = false;
-        newAttributes.resonance.locked = true;
-      }
-      this.setState({
-        ...this.state,
-        attributes: newAttributes,
-        spells: [],
-      });
-    }, 100);
   }
 
   updateSkills(skills: Skill[]) {
     this.setState({
       ...this.state,
       skills,
+      spells: [],
+      rituals: [],
+      knowledge: [
+        {
+          type: KnowledgeType.Language,
+          isNativeLanguage: true,
+          langType: LanguageType.Expert,
+          custom: "English",
+        },
+      ],
     });
   }
 
@@ -314,6 +283,8 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     this.setState({
       ...this.state,
       knowledge,
+      spells: [],
+      rituals: [],
     });
   }
 
@@ -321,6 +292,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     this.setState({
       ...this.state,
       spells,
+      rituals: [],
     });
   }
 
@@ -329,70 +301,6 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       ...this.state,
       rituals,
     });
-  }
-
-  getPriorityForMetaType(priority: PriorityType): MetaType {
-    if (priority === PriorityType.A)
-      return {
-        Races: [Race.Dwarf, Race.Ork, Race.Troll],
-        Points: 13,
-      };
-    else if (priority == PriorityType.B)
-      return {
-        Races: [Race.Elf, Race.Dwarf, Race.Ork, Race.Troll],
-        Points: 11,
-      };
-    else if (priority == PriorityType.C)
-      return {
-        Races: [Race.Human, Race.Elf, Race.Dwarf, Race.Ork, Race.Troll],
-        Points: 9,
-      };
-    else if (priority == PriorityType.D)
-      return {
-        Races: [Race.Human, Race.Elf, Race.Dwarf, Race.Ork, Race.Troll],
-        Points: 4,
-      };
-    else if (priority == PriorityType.E)
-      return {
-        Races: [Race.Human, Race.Elf, Race.Dwarf, Race.Ork, Race.Troll],
-        Points: 1,
-      };
-  }
-
-  getPriorityForAttributes(priority: PriorityType): number {
-    if (priority === PriorityType.A) return 24;
-    else if (priority == PriorityType.B) return 16;
-    else if (priority == PriorityType.C) return 12;
-    else if (priority == PriorityType.D) return 8;
-    else if (priority == PriorityType.E) return 2;
-    else return 0;
-  }
-
-  getPriorityForSkills(priority: PriorityType): number {
-    if (priority === PriorityType.A) return 32;
-    else if (priority == PriorityType.B) return 24;
-    else if (priority == PriorityType.C) return 20;
-    else if (priority == PriorityType.D) return 16;
-    else if (priority == PriorityType.E) return 10;
-    else return 0;
-  }
-
-  getPriorityForResources(priority: PriorityType): number {
-    if (priority === PriorityType.A) return 450000;
-    else if (priority == PriorityType.B) return 275000;
-    else if (priority == PriorityType.C) return 150000;
-    else if (priority == PriorityType.D) return 50000;
-    else if (priority == PriorityType.E) return 8000;
-    else return 0;
-  }
-
-  getPriorityForMagic(priority: PriorityType): number {
-    if (priority === PriorityType.A) return 4;
-    else if (priority == PriorityType.B) return 3;
-    else if (priority == PriorityType.C) return 2;
-    else if (priority == PriorityType.D) return 1;
-    else if (priority == PriorityType.E) return 0;
-    else return 0;
   }
 
   calculateKarma(): number {
@@ -419,7 +327,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
   }
 
   calculateAttributePoints(): number {
-    let currentAttributesNumber = this.getPriorityForAttributes(
+    let currentAttributesNumber = getPriorityForAttributes(
       this.state.priorities.attributes
     );
     Object.keys(this.state.attributes).forEach((key) => {
@@ -430,7 +338,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
   }
 
   calculateAdjustmentPoints(): number {
-    let currentAdjustments = this.getPriorityForMetaType(
+    let currentAdjustments = getPriorityForMetaType(
       this.state.priorities.metaType
     ).Points;
     Object.keys(this.state.attributes).forEach((key) => {
@@ -442,7 +350,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
 
   calculateSkillPoints(): number {
     const aptitude = this.state.qualities.find((q) => q.Name === "Aptitude");
-    let skills = this.getPriorityForSkills(this.state.priorities.skills);
+    let skills = getPriorityForSkills(this.state.priorities.skills);
     this.state.skills.forEach((s) => {
       skills -= s.value;
       if (aptitude !== undefined && aptitude !== null) {
@@ -475,11 +383,11 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
   }
 
   calculateSpellPoints(): number {
-    if (this.state.magic && this.state.magic.Type === MagicType.Technomancer)
+    if (this.state.magic && this.state.magic.type === MagicType.Technomancer)
       return 0;
-    let val: number = this.getPriorityForMagic(this.state.priorities.magic);
-    if (this.state.magic && this.state.magic.Adept)
-      val -= this.state.magic.Adept;
+    let val: number = getPriorityForMagic(this.state.priorities.magic);
+    if (this.state.magic && this.state.magic.adept)
+      val -= this.state.magic.adept;
     val *= 2;
     this.state.spells.forEach((spell) => {
       if (
@@ -495,9 +403,9 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
   }
 
   calculateResonancePoints(): number {
-    if (this.state.magic && this.state.magic.Type !== MagicType.Technomancer)
+    if (this.state.magic && this.state.magic.type !== MagicType.Technomancer)
       return 0;
-    return this.getPriorityForMagic(this.state.priorities.magic) * 2;
+    return getPriorityForMagic(this.state.priorities.magic) * 2;
   }
 
   render() {
@@ -534,12 +442,12 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
           </div>
           <div className="item">
             <div className="name">Adept</div>
-            <div className="value">{this.state.magic.Adept}</div>
+            <div className="value">{this.state.magic.adept}</div>
           </div>
           <div className="item">
             <div className="name">Resources</div>
             <div className="value">
-              {this.getPriorityForResources(this.state.priorities.resources)
+              {getPriorityForResources(this.state.priorities.resources)
                 .toString()
                 .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}
             </div>
@@ -550,14 +458,12 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
           priorities={this.state.priorities}
         />
         <RaceSelection
-          races={
-            this.getPriorityForMetaType(this.state.priorities.metaType).Races
-          }
+          races={getPriorityForMetaType(this.state.priorities.metaType).Races}
           updateRace={(value) => this.updateMetatype(value)}
           value={this.state.race}
         />
         <MagicTable
-          magicAmount={this.getPriorityForMagic(this.state.priorities.magic)}
+          magicAmount={getPriorityForMagic(this.state.priorities.magic)}
           magic={this.state.magic}
           updateMagic={(magic) => this.updateMagic(magic)}
         />
@@ -580,12 +486,12 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
         <SpellsTable
           spells={this.state.spells}
           updateSpells={(s) => this.updateSpells(s)}
-          magicPriority={this.getPriorityForMagic(this.state.priorities.magic)}
+          magicPriority={getPriorityForMagic(this.state.priorities.magic)}
           magic={this.state.magic}
         />
         <RitualsTable
           rituals={this.state.rituals}
-          magicPriority={this.getPriorityForMagic(this.state.priorities.magic)}
+          magicPriority={getPriorityForMagic(this.state.priorities.magic)}
           updateRituals={(r) => this.updateRituals(r)}
           magic={this.state.magic}
         />

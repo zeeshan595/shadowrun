@@ -1,6 +1,6 @@
 import * as React from "react";
 import {
-  Qualities,
+  qualities,
   QualityType,
   Quality,
   AttributeType,
@@ -9,7 +9,7 @@ import {
   SpiritType,
   SpriteType,
 } from "../../../Model/Quality";
-import { printpretty } from "./General";
+import { printpretty } from "../General";
 
 export interface IQualitiesProps {
   selectedQualities: Quality[];
@@ -78,7 +78,7 @@ export class QualitiesTable extends React.Component<
   }
 
   render() {
-    const positiveQualities = Qualities.filter(
+    const positiveQualities = qualities.filter(
       (q) =>
         q.Type == this.state.typeView &&
         this.props.selectedQualities.findIndex((s) => s.Name === q.Name) === -1

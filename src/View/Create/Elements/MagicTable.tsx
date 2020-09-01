@@ -5,7 +5,7 @@ import {
   Magic,
   MagicSkills,
 } from "../../../Model/Magic";
-import { printpretty } from "./General";
+import { printpretty } from "../General";
 
 export interface IMagicTableProps {
   magic: Magic;
@@ -98,19 +98,19 @@ export class MagicTable extends React.Component<
 
     let magicTradition = null;
     if (
-      this.props.magic.Type == MagicType.Magician ||
-      this.props.magic.Type == MagicType.MysticAdept ||
-      this.props.magic.Type == MagicType.AspectedMagician
+      this.props.magic.type == MagicType.Magician ||
+      this.props.magic.type == MagicType.MysticAdept ||
+      this.props.magic.type == MagicType.AspectedMagician
     ) {
       magicTradition = (
         <div>
           <h4>Select the magic tradition to cast your spell</h4>
           <select
-            value={this.props.magic.Tradition}
+            value={this.props.magic.tradition}
             onChange={(evt) =>
               this.props.updateMagic({
                 ...this.props.magic,
-                Tradition: parseInt(evt.currentTarget.value) as MagicTradition,
+                tradition: parseInt(evt.currentTarget.value) as MagicTradition,
               })
             }
           >
@@ -122,16 +122,16 @@ export class MagicTable extends React.Component<
     }
 
     let magicSkillLimit = null;
-    if (this.props.magic.Type == MagicType.AspectedMagician) {
+    if (this.props.magic.type == MagicType.AspectedMagician) {
       magicSkillLimit = (
         <div>
           <h4>Select the magic skill you are limited to</h4>
           <select
-            value={this.props.magic.MagicSkillLimit}
+            value={this.props.magic.magicSkillLimit}
             onChange={(evt) =>
               this.props.updateMagic({
                 ...this.props.magic,
-                MagicSkillLimit: parseInt(
+                magicSkillLimit: parseInt(
                   evt.currentTarget.value
                 ) as MagicSkills,
               })
@@ -146,7 +146,7 @@ export class MagicTable extends React.Component<
     }
 
     let mysticAdept = null;
-    if (this.props.magic.Type == MagicType.MysticAdept) {
+    if (this.props.magic.type == MagicType.MysticAdept) {
       mysticAdept = (
         <div className="adeptDistribution">
           <h4>Distribute your magic rating between your magician and adept</h4>
@@ -164,7 +164,7 @@ export class MagicTable extends React.Component<
                   <input
                     type="number"
                     disabled={true}
-                    value={this.props.magicAmount - this.props.magic.Adept}
+                    value={this.props.magicAmount - this.props.magic.adept}
                   />
                 </td>
                 <td>
@@ -173,12 +173,12 @@ export class MagicTable extends React.Component<
                       type="range"
                       min="0"
                       max={this.props.magicAmount}
-                      value={this.props.magic.Adept}
+                      value={this.props.magic.adept}
                       className="slider"
                       onChange={(ev) =>
                         this.props.updateMagic({
                           ...this.props.magic,
-                          Adept: parseInt(ev.currentTarget.value),
+                          adept: parseInt(ev.currentTarget.value),
                         })
                       }
                     />
@@ -188,7 +188,7 @@ export class MagicTable extends React.Component<
                   <input
                     type="number"
                     disabled={true}
-                    value={this.props.magic.Adept}
+                    value={this.props.magic.adept}
                   />
                 </td>
               </tr>
@@ -199,7 +199,7 @@ export class MagicTable extends React.Component<
     }
 
     let plusOne = null;
-    if (this.props.magic.Type == MagicType.AspectedMagician)
+    if (this.props.magic.type == MagicType.AspectedMagician)
       plusOne = (
         <div>
           <h4>+1 Magic</h4>
@@ -217,12 +217,12 @@ export class MagicTable extends React.Component<
                 <input
                   type="radio"
                   name="magic"
-                  checked={MagicType[type] === this.props.magic.Type}
+                  checked={MagicType[type] === this.props.magic.type}
                   onChange={() =>
                     this.props.updateMagic({
                       ...this.props.magic,
-                      Type: MagicType[type],
-                      Adept:
+                      type: MagicType[type],
+                      adept:
                         MagicType[type] === MagicType.Adept
                           ? this.props.magicAmount
                           : 0,
@@ -234,7 +234,7 @@ export class MagicTable extends React.Component<
             ))}
           </div>
           <div className="magicDescription">
-            {this.magicTypeDescriptions[this.props.magic.Type]}
+            {this.magicTypeDescriptions[this.props.magic.type]}
           </div>
         </div>
         {plusOne}
