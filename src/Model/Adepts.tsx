@@ -4,7 +4,7 @@ import { AttributeType, SkillType } from "./Quality";
 export enum ActivationType {
   Passive,
   MinorAction,
-  Action,
+  MajorAction,
 }
 
 export enum CostType {

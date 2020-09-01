@@ -39,6 +39,8 @@ import {
 } from "../General";
 import { AdeptTable } from "./Elements/AdeptsTable";
 import { Adept, CostType } from "../../Model/Adepts";
+import { ComplexFormsTable } from "./Elements/ComplexFormsTable";
+import { ComplexForm } from "../../Model/ComplexForms";
 
 export interface ICreateProps {}
 
@@ -59,6 +61,7 @@ export interface ICreateState {
   spells: Spell[];
   rituals: Ritual[];
   adepts: Adept[];
+  complexForms: ComplexForm[];
 }
 
 export class Create extends React.Component<ICreateProps, ICreateState> {
@@ -93,6 +96,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       spells: [],
       rituals: [],
       adepts: [],
+      complexForms: [],
     };
   }
 
@@ -123,14 +127,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       rituals: [],
       skills: [],
       adepts: [],
-      knowledge: [
-        {
-          type: KnowledgeType.Language,
-          isNativeLanguage: true,
-          langType: LanguageType.Expert,
-          custom: "English",
-        },
-      ],
+      complexForms: [],
     });
 
     setTimeout(() => {
@@ -161,14 +158,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       rituals: [],
       skills: [],
       adepts: [],
-      knowledge: [
-        {
-          type: KnowledgeType.Language,
-          isNativeLanguage: true,
-          langType: LanguageType.Expert,
-          custom: "English",
-        },
-      ],
+      complexForms: [],
     });
 
     setTimeout(() => {
@@ -193,14 +183,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       rituals: [],
       skills: [],
       adepts: [],
-      knowledge: [
-        {
-          type: KnowledgeType.Language,
-          isNativeLanguage: true,
-          langType: LanguageType.Expert,
-          custom: "English",
-        },
-      ],
+      complexForms: [],
     });
 
     setTimeout(() => {
@@ -220,14 +203,6 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     this.setState({
       ...this.state,
       qualities,
-      knowledge: [
-        {
-          type: KnowledgeType.Language,
-          isNativeLanguage: true,
-          langType: LanguageType.Expert,
-          custom: "English",
-        },
-      ],
     });
 
     setTimeout(() => {
@@ -247,14 +222,6 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     this.setState({
       ...this.state,
       attributes,
-      knowledge: [
-        {
-          type: KnowledgeType.Language,
-          isNativeLanguage: true,
-          langType: LanguageType.Expert,
-          custom: "English",
-        },
-      ],
     });
   }
 
@@ -262,14 +229,6 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     this.setState({
       ...this.state,
       skills,
-      knowledge: [
-        {
-          type: KnowledgeType.Language,
-          isNativeLanguage: true,
-          langType: LanguageType.Expert,
-          custom: "English",
-        },
-      ],
     });
   }
 
@@ -298,6 +257,13 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     this.setState({
       ...this.state,
       adepts,
+    });
+  }
+
+  updateComplexForms(complexForms: ComplexForm[]) {
+    this.setState({
+      ...this.state,
+      complexForms,
     });
   }
 
@@ -522,6 +488,12 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
           adepts={this.state.adepts}
           magicPriority={getPriorityForMagic(this.state.priorities.magic)}
           updateAdepts={(a) => this.updateAdepts(a)}
+          magic={this.state.magic}
+        />
+        <ComplexFormsTable
+          complexForms={this.state.complexForms}
+          magicPriority={getPriorityForMagic(this.state.priorities.magic)}
+          updateComplexForms={(cf) => this.updateComplexForms(cf)}
           magic={this.state.magic}
         />
       </div>
