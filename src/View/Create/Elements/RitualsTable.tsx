@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Magic, MagicType, MagicSkills } from "../../../Model/Magic";
 import { Ritual, rituals } from "../../../Model/Rituals";
-import { printpretty } from "../General";
+import { printpretty } from "../../General";
 
 export interface IRitualsTableProps {
   magicPriority: number;

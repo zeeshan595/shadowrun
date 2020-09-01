@@ -10,14 +10,9 @@ import {
   MagicSkills,
   MagicTradition,
 } from "../../Model/Magic";
-import { Race, MetaType } from "../../Model/MetaType";
+import { Race } from "../../Model/MetaType";
 import { QualitiesTable } from "./Elements/QualitiesTable";
-import {
-  Quality,
-  qualities,
-  AttributeType,
-  QualityType,
-} from "../../Model/Quality";
+import { Quality, QualityType } from "../../Model/Quality";
 import { AttributeTable } from "./Elements/AttributesTable";
 import {
   attributes,
@@ -41,7 +36,7 @@ import {
   getPriorityForResources,
   computeBaseAttributes,
   computeBaseQualities,
-} from "./General";
+} from "../General";
 
 export interface ICreateProps {}
 

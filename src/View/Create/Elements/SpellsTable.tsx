@@ -14,7 +14,7 @@ import {
   MagicTradition,
   MagicSkills,
 } from "../../../Model/Magic";
-import { printpretty } from "../General";
+import { printpretty } from "../../General";
 
 export interface ISpellsTableProps {
   spells: Spell[];

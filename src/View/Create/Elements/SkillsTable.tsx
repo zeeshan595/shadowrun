@@ -6,7 +6,7 @@ import {
   AttributeTypePlus,
 } from "../../../Model/Skills";
 import { SkillType } from "../../../Model/Quality";
-import { printpretty } from "../General";
+import { printpretty } from "../../General";
 
 export interface ISkillsTableProps {
   skills: Skill[];

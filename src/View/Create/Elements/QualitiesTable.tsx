@@ -9,7 +9,7 @@ import {
   SpiritType,
   SpriteType,
 } from "../../../Model/Quality";
-import { printpretty } from "../General";
+import { printpretty } from "../../General";
 
 export interface IQualitiesProps {
   selectedQualities: Quality[];
