@@ -4,9 +4,8 @@ import {
   ComplexForm,
   MatrixAttributeType,
   ProgramType,
-} from "../../../Model/ComplexForms";
-import { Magic, MagicType } from "../../../Model/Magic";
-import { AttributeType } from "../../../Model/Quality";
+} from "../../../Model/Create/ComplexForms";
+import { Magic, MagicType } from "../../../Model/Create/Magic";
 import { printpretty } from "../General";
 
 export interface IComplexFormsTableProps {

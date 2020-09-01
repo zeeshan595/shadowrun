@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Race } from "../../../Model/MetaType";
+import { Race } from "../../../Model/Create/MetaType";
 
 export interface IRaceSelectionProps {
   updateRace: (value: Race) => void;

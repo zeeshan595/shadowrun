@@ -3,7 +3,7 @@ import {
   Knowledge,
   KnowledgeType,
   LanguageType,
-} from "../../../Model/Knowledge";
+} from "../../../Model/Create/Knowledge";
 
 export interface IKnowledgeTableProps {
   knowledge: Knowledge[];
