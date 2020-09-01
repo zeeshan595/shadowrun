@@ -4,9 +4,9 @@ import {
   Skill,
   getSpecialization,
   AttributeTypePlus,
-} from "../../../Model/Skills";
-import { SkillType } from "../../../Model/Quality";
-import { printpretty } from "../../General";
+} from "../../../Model/Create/Skills";
+import { SkillType } from "../../../Model/Create/Quality";
+import { printpretty } from "../General";
 
 export interface ISkillsTableProps {
   skills: Skill[];

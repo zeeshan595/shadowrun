@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./Style.scss";
-import { PriorityType } from "../../Model/PriorityType";
+import { PriorityType } from "../../Model/Create/PriorityType";
 import { PriorityTable } from "./Elements/PriorityTable";
 import { RaceSelection } from "./Elements/RaceSelection";
 import { MagicTable } from "./Elements/MagicTable";
@@ -9,25 +9,29 @@ import {
   Magic,
   MagicSkills,
   MagicTradition,
-} from "../../Model/Magic";
-import { Race } from "../../Model/MetaType";
+} from "../../Model/Create/Magic";
+import { Race } from "../../Model/Create/MetaType";
 import { QualitiesTable } from "./Elements/QualitiesTable";
-import { Quality, QualityType, SkillType } from "../../Model/Quality";
+import { Quality, QualityType, SkillType } from "../../Model/Create/Quality";
 import { AttributeTable } from "./Elements/AttributesTable";
 import {
   attributes,
   CharacterAttributes,
   Attribute,
   getAttributeTotal,
-} from "../../Model/Attribute";
+} from "../../Model/Create/Attribute";
 import { SkillsTable } from "./Elements/SkillsTable";
-import { Skill } from "../../Model/Skills";
+import { Skill } from "../../Model/Create/Skills";
 import { KnowledgeTable } from "./Elements/KnowledgeTable";
-import { Knowledge, KnowledgeType, LanguageType } from "../../Model/Knowledge";
+import {
+  Knowledge,
+  KnowledgeType,
+  LanguageType,
+} from "../../Model/Create/Knowledge";
 import { SpellsTable } from "./Elements/SpellsTable";
-import { Spell, CastType } from "../../Model/Spells";
+import { Spell, CastType } from "../../Model/Create/Spells";
 import { RitualsTable } from "./Elements/RitualsTable";
-import { Ritual } from "../../Model/Rituals";
+import { Ritual } from "../../Model/Create/Rituals";
 import {
   getPriorityForSkills,
   getPriorityForMagic,
@@ -36,11 +40,13 @@ import {
   getPriorityForResources,
   computeBaseAttributes,
   computeBaseQualities,
-} from "../General";
+} from "./General";
 import { AdeptTable } from "./Elements/AdeptsTable";
-import { Adept, CostType } from "../../Model/Adepts";
+import { Adept, CostType } from "../../Model/Create/Adepts";
 import { ComplexFormsTable } from "./Elements/ComplexFormsTable";
-import { ComplexForm } from "../../Model/ComplexForms";
+import { ComplexForm } from "../../Model/Create/ComplexForms";
+import { ProfileTable } from "./Elements/ProfileTable";
+import { Profile, GenderType } from "../../Model/Create/Profile";
 
 export interface ICreateProps {}
 
@@ -62,6 +68,7 @@ export interface ICreateState {
   rituals: Ritual[];
   adepts: Adept[];
   complexForms: ComplexForm[];
+  profile: Profile;
 }
 
 export class Create extends React.Component<ICreateProps, ICreateState> {
@@ -97,6 +104,16 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       rituals: [],
       adepts: [],
       complexForms: [],
+      profile: {
+        streetName: "Mr Cool",
+        realName: "Coolio benderban",
+        gender: GenderType.Male,
+        height: 170,
+        age: 30,
+        weight: 70,
+        picture:
+          "https://i.pinimg.com/originals/61/6b/d5/616bd59e5ea0c9b2eb86b17bac54b093.png",
+      },
     };
   }
 
@@ -267,6 +284,13 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     });
   }
 
+  updateProfile(profile: Profile) {
+    this.setState({
+      ...this.state,
+      profile,
+    });
+  }
+
   calculateKarma(): number {
     let karma: number = 50;
     this.state.qualities.forEach((q) => {
@@ -400,6 +424,8 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     return val;
   }
 
+  createCharacter() {}
+
   render() {
     return (
       <div className="characterCreation">
@@ -499,6 +525,11 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
           updateComplexForms={(cf) => this.updateComplexForms(cf)}
           magic={this.state.magic}
         />
+        <ProfileTable
+          profile={this.state.profile}
+          updateProfile={(p) => this.updateProfile(p)}
+        />
+        <button onClick={() => this.createCharacter()}>Create Character</button>
       </div>
     );
   }

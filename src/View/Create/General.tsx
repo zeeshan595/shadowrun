@@ -1,8 +1,8 @@
-import { attributes, CharacterAttributes } from "../Model/Attribute";
-import { Quality, AttributeType, qualities } from "../Model/Quality";
-import { MagicType } from "../Model/Magic";
-import { Race, MetaType } from "../Model/MetaType";
-import { PriorityType } from "../Model/PriorityType";
+import { attributes, CharacterAttributes } from "../../Model/Attribute";
+import { Quality, AttributeType, qualities } from "../../Model/Quality";
+import { MagicType } from "../../Model/Magic";
+import { Race, MetaType } from "../../Model/MetaType";
+import { PriorityType } from "../../Model/PriorityType";
 
 export const printpretty = (val: string): string => {
   return (

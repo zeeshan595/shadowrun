@@ -4,8 +4,8 @@ import {
   MagicTradition,
   Magic,
   MagicSkills,
-} from "../../../Model/Magic";
-import { printpretty } from "../../General";
+} from "../../../Model/Create/Magic";
+import { printpretty } from "../General";
 
 export interface IMagicTableProps {
   magic: Magic;

@@ -7,7 +7,7 @@ import {
 } from "../../../Model/ComplexForms";
 import { Magic, MagicType } from "../../../Model/Magic";
 import { AttributeType } from "../../../Model/Quality";
-import { printpretty } from "../../General";
+import { printpretty } from "../General";
 
 export interface IComplexFormsTableProps {
   complexForms: ComplexForm[];

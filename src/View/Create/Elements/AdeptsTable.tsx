@@ -1,8 +1,8 @@
 import * as React from "react";
-import { adepts, Adept, CostType, ActivationType } from "../../../Model/Adepts";
-import { Magic, MagicType } from "../../../Model/Magic";
-import { printpretty } from "../../General";
-import { SkillType, AttributeType } from "../../../Model/Quality";
+import { adepts, Adept, CostType, ActivationType } from "../../../Model/Create/Adepts";
+import { Magic, MagicType } from "../../../Model/Create/Magic";
+import { printpretty } from "../General";
+import { SkillType, AttributeType } from "../../../Model/Create/Quality";
 
 export interface IAdeptsTableProps {
   adepts: Adept[];

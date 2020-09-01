@@ -7,13 +7,13 @@ import {
   SpellRange,
   SpellConstructionType,
   SpellDuration,
-} from "../../../Model/Spells";
+} from "../../../Model/Create/Spells";
 import {
   Magic,
   MagicType,
   MagicSkills,
-} from "../../../Model/Magic";
-import { printpretty } from "../../General";
+} from "../../../Model/Create/Magic";
+import { printpretty } from "../General";
 
 export interface ISpellsTableProps {
   spells: Spell[];

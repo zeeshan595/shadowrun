@@ -8,8 +8,8 @@ import {
   SkillType,
   SpiritType,
   SpriteType,
-} from "../../../Model/Quality";
-import { printpretty } from "../../General";
+} from "../../../Model/Create/Quality";
+import { printpretty } from "../General";
 
 export interface IQualitiesProps {
   selectedQualities: Quality[];
