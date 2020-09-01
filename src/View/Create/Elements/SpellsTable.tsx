@@ -11,7 +11,6 @@ import {
 import {
   Magic,
   MagicType,
-  MagicTradition,
   MagicSkills,
 } from "../../../Model/Magic";
 import { printpretty } from "../../General";

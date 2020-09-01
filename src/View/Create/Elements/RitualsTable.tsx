@@ -74,7 +74,7 @@ export class RitualsTable extends React.Component<
             {this.state.currentlySelected.threshold}
           </span>
           <br />
-          <p>{this.state.currentlySelected.description}</p>
+          {this.state.currentlySelected.description}
         </div>
       );
     }

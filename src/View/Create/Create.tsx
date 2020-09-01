@@ -12,7 +12,7 @@ import {
 } from "../../Model/Magic";
 import { Race } from "../../Model/MetaType";
 import { QualitiesTable } from "./Elements/QualitiesTable";
-import { Quality, QualityType } from "../../Model/Quality";
+import { Quality, QualityType, SkillType } from "../../Model/Quality";
 import { AttributeTable } from "./Elements/AttributesTable";
 import {
   attributes,
@@ -37,6 +37,8 @@ import {
   computeBaseAttributes,
   computeBaseQualities,
 } from "../General";
+import { AdeptTable } from "./Elements/AdeptsTable";
+import { Adept, CostType } from "../../Model/Adepts";
 
 export interface ICreateProps {}
 
@@ -56,6 +58,7 @@ export interface ICreateState {
   knowledge: Knowledge[];
   spells: Spell[];
   rituals: Ritual[];
+  adepts: Adept[];
 }
 
 export class Create extends React.Component<ICreateProps, ICreateState> {
@@ -89,6 +92,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       ],
       spells: [],
       rituals: [],
+      adepts: [],
     };
   }
 
@@ -118,6 +122,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       spells: [],
       rituals: [],
       skills: [],
+      adepts: [],
       knowledge: [
         {
           type: KnowledgeType.Language,
@@ -155,6 +160,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       spells: [],
       rituals: [],
       skills: [],
+      adepts: [],
       knowledge: [
         {
           type: KnowledgeType.Language,
@@ -186,6 +192,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       spells: [],
       rituals: [],
       skills: [],
+      adepts: [],
       knowledge: [
         {
           type: KnowledgeType.Language,
@@ -213,9 +220,6 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     this.setState({
       ...this.state,
       qualities,
-      spells: [],
-      rituals: [],
-      skills: [],
       knowledge: [
         {
           type: KnowledgeType.Language,
@@ -243,9 +247,6 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     this.setState({
       ...this.state,
       attributes,
-      spells: [],
-      rituals: [],
-      skills: [],
       knowledge: [
         {
           type: KnowledgeType.Language,
@@ -261,8 +262,6 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     this.setState({
       ...this.state,
       skills,
-      spells: [],
-      rituals: [],
       knowledge: [
         {
           type: KnowledgeType.Language,
@@ -278,8 +277,6 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     this.setState({
       ...this.state,
       knowledge,
-      spells: [],
-      rituals: [],
     });
   }
 
@@ -287,7 +284,6 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     this.setState({
       ...this.state,
       spells,
-      rituals: [],
     });
   }
 
@@ -295,6 +291,13 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     this.setState({
       ...this.state,
       rituals,
+    });
+  }
+
+  updateAdepts(adepts: Adept[]) {
+    this.setState({
+      ...this.state,
+      adepts,
     });
   }
 
@@ -403,6 +406,31 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     return getPriorityForMagic(this.state.priorities.magic) * 2;
   }
 
+  calculateAdeptPoints(): number {
+    const combatSkills: SkillType[] = [
+      SkillType.CloseCombat,
+      SkillType.ExoticWeapons,
+      SkillType.Firearms,
+    ];
+
+    let val = this.state.magic.adept;
+    this.state.adepts.forEach((adept) => {
+      if (adept.costType === CostType.Base) {
+        val -= adept.cost;
+      } else if (adept.costType == CostType.PerLevel) {
+        if (
+          adept.hasSkill &&
+          combatSkills.findIndex((s) => s === adept.skill) !== -1
+        ) {
+          val -= adept.cost * adept.amount * 2;
+        } else {
+          val -= adept.cost * adept.amount;
+        }
+      }
+    });
+    return val;
+  }
+
   render() {
     return (
       <div className="characterCreation">
@@ -437,7 +465,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
           </div>
           <div className="item">
             <div className="name">Adept</div>
-            <div className="value">{this.state.magic.adept}</div>
+            <div className="value">{this.calculateAdeptPoints()}</div>
           </div>
           <div className="item">
             <div className="name">Resources</div>
@@ -488,6 +516,12 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
           rituals={this.state.rituals}
           magicPriority={getPriorityForMagic(this.state.priorities.magic)}
           updateRituals={(r) => this.updateRituals(r)}
+          magic={this.state.magic}
+        />
+        <AdeptTable
+          adepts={this.state.adepts}
+          magicPriority={getPriorityForMagic(this.state.priorities.magic)}
+          updateAdepts={(a) => this.updateAdepts(a)}
           magic={this.state.magic}
         />
       </div>
