@@ -369,7 +369,10 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
   calculateResonancePoints(): number {
     if (this.state.magic && this.state.magic.type !== MagicType.Technomancer)
       return 0;
-    return getPriorityForMagic(this.state.priorities.magic) * 2;
+    return (
+      getPriorityForMagic(this.state.priorities.magic) * 2 -
+      this.state.complexForms.length
+    );
   }
 
   calculateAdeptPoints(): number {
