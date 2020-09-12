@@ -3,9 +3,9 @@ import {
   CharacterAttributes,
   attributes,
   Attribute,
-  getAttributeTotal,
 } from "../../../Model/Create/Attribute";
 import { AttributeTypePlus } from "../../../Model/Create/Skills";
+import { getAttributeTotal } from "../General";
 
 export interface IAttributeTableProps {
   updateAttributes: (attributes: CharacterAttributes) => void;

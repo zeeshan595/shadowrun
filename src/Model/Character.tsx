@@ -1,22 +1,25 @@
-import { MetaType } from "./Create/MetaType";
+import { Race } from "./Create/MetaType";
 import { GenderType } from "./Create/Profile";
 import { MagicType } from "./Create/Magic";
 import { Quality } from "./Create/Quality";
 import { Knowledge } from "./Create/Knowledge";
+import { Skill } from "./Create/Skills";
+import { CharacterAttributes } from "./Create/Attribute";
 
 export interface Character {
   personalData: PersonalData;
-  attributes: Attributes;
+  attributes: CharacterAttributes;
   qualities: Quality[];
   conditionMonitor: ConditionMonitor;
   knowledge: Knowledge[];
+  skills: Skill[];
 }
 
 export interface PersonalData {
   alias: string;
   name: string;
-  metaType: MetaType;
-  magicType: MagicType;
+  metaType: Race;
+  magicType: MagicType | null;
   gender: GenderType;
   height: number;
   weight: number;
@@ -30,21 +33,8 @@ export interface PersonalData {
   nuyen: number;
 }
 
-export interface Attributes {
-  body: number;
-  agility: number;
-  reaction: number;
-  strength: number;
-  willpower: number;
-  logic: number;
-  intuition: number;
-  charisma: number;
-  edge: number;
-  magic: number;
-}
-
 export interface ConditionMonitor {
-  Stun: number;
-  Physical: number;
-  Damage: number;
+  stun: number;
+  physical: number;
+  damage: number;
 }

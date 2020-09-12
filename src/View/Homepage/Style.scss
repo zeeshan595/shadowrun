@@ -3,18 +3,22 @@
     width: 200px;
     height: 200px;
     margin: 20px;
-    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 3px 1px rgba(252, 25, 192, 0.3);
     border-radius: 20px;
     cursor: pointer;
     transition: 0.3s;
     &:hover {
-      box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 10px 3px rgba(252, 25, 192, 0.3);
     }
 
     .image {
       width: 100%;
       height: calc(100% - 35px);
       background-color: black;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: auto 100%;
+      background-color: white;
       border-top-right-radius: 20px;
       border-top-left-radius: 20px;
     }
@@ -22,6 +26,11 @@
       display: block;
       padding: 5px 10px;
       text-align: center;
+      background-color: rgba(252, 25, 192, 1);
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      color: white;
+      font-weight: bold;
     }
   }
 }

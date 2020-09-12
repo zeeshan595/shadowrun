@@ -1,8 +1,13 @@
-import { attributes, CharacterAttributes } from "../../Model/Create/Attribute";
+import {
+  attributes,
+  CharacterAttributes,
+  Attribute,
+} from "../../Model/Create/Attribute";
 import { Quality, AttributeType, qualities } from "../../Model/Create/Quality";
 import { MagicType } from "../../Model/Create/Magic";
 import { Race, MetaType } from "../../Model/Create/MetaType";
 import { PriorityType } from "../../Model/Create/PriorityType";
+import { AttributeTypePlus } from "../../Model/Create/Skills";
 
 export const printpretty = (val: string): string => {
   return (
@@ -13,6 +18,20 @@ export const printpretty = (val: string): string => {
         return str.toUpperCase();
       })
   );
+};
+
+export const getAttributeTotal = (attribute: Attribute): number => {
+  let total: number = 1;
+  if (
+    attribute.name === AttributeTypePlus.Magic ||
+    attribute.name === AttributeTypePlus.Resonance
+  )
+    total = 0;
+  if (attribute.baseValue) total += attribute.baseValue;
+  if (attribute.adjustment) total += attribute.adjustment;
+  if (attribute.attribute) total += attribute.attribute;
+  if (attribute.karma) total += attribute.karma;
+  return total;
 };
 
 export const getPriorityForMetaType = (priority: PriorityType): MetaType => {

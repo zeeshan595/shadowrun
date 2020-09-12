@@ -25,20 +25,6 @@ export interface CharacterAttributes {
   resonance: Attribute;
 }
 
-export const getAttributeTotal = (attribute: Attribute): number => {
-  let total: number = 1;
-  if (
-    attribute.name === AttributeTypePlus.Magic ||
-    attribute.name === AttributeTypePlus.Resonance
-  )
-    total = 0;
-  if (attribute.baseValue) total += attribute.baseValue;
-  if (attribute.adjustment) total += attribute.adjustment;
-  if (attribute.attribute) total += attribute.attribute;
-  if (attribute.karma) total += attribute.karma;
-  return total;
-};
-
 export const attributes: CharacterAttributes = {
   body: {
     name: AttributeTypePlus.Body,

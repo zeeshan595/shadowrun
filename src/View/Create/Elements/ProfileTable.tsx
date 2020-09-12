@@ -23,7 +23,7 @@ export class ProfileTable extends React.Component<
                 <table>
                   <tbody>
                     <tr>
-                      <td>Street Name</td>
+                      <td>Alias</td>
                       <td>
                         <input
                           type="text"

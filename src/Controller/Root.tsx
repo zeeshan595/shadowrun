@@ -1,8 +1,6 @@
 import { combineReducers } from "redux";
 
 //Reducers
-
-//Reducers
 import NavigationReducer, { INavigationState } from "./Navigation/Reducer";
 
 export type RootState = {

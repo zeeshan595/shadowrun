@@ -12,13 +12,17 @@ import {
 } from "../../Model/Create/Magic";
 import { Race } from "../../Model/Create/MetaType";
 import { QualitiesTable } from "./Elements/QualitiesTable";
-import { Quality, QualityType, SkillType } from "../../Model/Create/Quality";
+import {
+  Quality,
+  QualityType,
+  SkillType,
+  qualities,
+} from "../../Model/Create/Quality";
 import { AttributeTable } from "./Elements/AttributesTable";
 import {
   attributes,
   CharacterAttributes,
   Attribute,
-  getAttributeTotal,
 } from "../../Model/Create/Attribute";
 import { SkillsTable } from "./Elements/SkillsTable";
 import { Skill } from "../../Model/Create/Skills";
@@ -40,6 +44,7 @@ import {
   getPriorityForResources,
   computeBaseAttributes,
   computeBaseQualities,
+  getAttributeTotal,
 } from "./General";
 import { AdeptTable } from "./Elements/AdeptsTable";
 import { Adept, CostType } from "../../Model/Create/Adepts";
@@ -47,8 +52,13 @@ import { ComplexFormsTable } from "./Elements/ComplexFormsTable";
 import { ComplexForm } from "../../Model/Create/ComplexForms";
 import { ProfileTable } from "./Elements/ProfileTable";
 import { Profile, GenderType } from "../../Model/Create/Profile";
+import { Character } from "../../Model/Character";
+import { getCookie } from "../../Controller/CookieManager";
 
-export interface ICreateProps {}
+export interface ICreateProps {
+  updateOrCreateCookie?: (name: string, value: string, expires: Date) => void;
+  getCookie?: (name: string) => string;
+}
 
 export interface ICreateState {
   priorities: {
@@ -145,6 +155,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       skills: [],
       adepts: [],
       complexForms: [],
+      attributes: Object.assign({}, attributes),
     });
 
     setTimeout(() => {
@@ -176,6 +187,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       skills: [],
       adepts: [],
       complexForms: [],
+      attributes: Object.assign({}, attributes),
     });
 
     setTimeout(() => {
@@ -201,6 +213,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
       skills: [],
       adepts: [],
       complexForms: [],
+      attributes: Object.assign({}, attributes),
     });
 
     setTimeout(() => {
@@ -220,6 +233,8 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     this.setState({
       ...this.state,
       qualities,
+      attributes: Object.assign({}, attributes),
+      skills: [],
     });
 
     setTimeout(() => {
@@ -424,7 +439,53 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
     return val;
   }
 
-  createCharacter() {}
+  createCharacter() {
+    let savedChars = getCookie("characters");
+    const characters: Character[] = [];
+    if (savedChars !== null && savedChars !== undefined) {
+      (JSON.parse(savedChars) as Character[]).forEach((c) => {
+        characters.push(c);
+        console.log(c);
+      });
+    }
+    characters.push({
+      personalData: {
+        alias: this.state.profile.streetName,
+        name: this.state.profile.realName,
+        gender: this.state.profile.gender,
+        age: this.state.profile.age,
+        height: this.state.profile.height,
+        karma: this.calculateKarma(),
+        edge: getAttributeTotal(this.state.attributes.edge),
+        magicType:
+          getPriorityForMagic(this.state.priorities.magic) > 1
+            ? this.state.magic.type
+            : null,
+        nuyen: this.calculateResonancePoints(),
+        metaType: this.state.race,
+        essence: 6,
+        picture: this.state.profile.picture,
+        heat: 0,
+        reputation: 0,
+        weight: this.state.profile.weight,
+      },
+      conditionMonitor: {
+        stun: 0,
+        physical: 0,
+        damage: 0,
+      },
+      attributes: this.state.attributes,
+      knowledge: this.state.knowledge,
+      qualities: this.state.qualities,
+      skills: this.state.skills,
+    });
+    this.props.updateOrCreateCookie(
+      "characters",
+      JSON.stringify(characters),
+      new Date(Date.now() * 1000 * 60 * 60 * 24 * 366 * 10)
+    );
+    window.location.href = "/";
+  }
 
   render() {
     return (
@@ -496,6 +557,7 @@ export class Create extends React.Component<ICreateProps, ICreateState> {
         <SkillsTable
           skills={this.state.skills}
           updateSkills={(s) => this.updateSkills(s)}
+          qualities={this.state.qualities}
         />
         <KnowledgeTable
           knowledge={this.state.knowledge}

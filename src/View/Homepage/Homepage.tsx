@@ -1,12 +1,33 @@
 import * as React from "react";
 import "./Style.scss";
 import { Link } from "react-router-dom";
+import { Character } from "../../Model/Character";
 
-export interface IHomepageProps {}
+export interface IHomepageProps {
+  getCookie?: (name: string) => string;
+}
 
-export interface IHomepageState {}
+export interface IHomepageState {
+  characters: Character[];
+}
 
 class Homepage extends React.Component<IHomepageProps, IHomepageState> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      characters: [],
+    };
+  }
+
+  componentWillMount() {
+    const characters = this.props.getCookie("characters");
+    if (characters === undefined || characters === null) return;
+    this.setState({
+      ...this.state,
+      characters: JSON.parse(characters),
+    });
+  }
+
   render() {
     return (
       <div>
@@ -14,10 +35,19 @@ class Homepage extends React.Component<IHomepageProps, IHomepageState> {
           <button>+ Create Characer</button>
         </Link>
         <div className="characterList">
-          <div className="character">
-            <div className="image"></div>
-            <span className="name">Drowman</span>
-          </div>
+          {this.state.characters.map((character, index) => {
+            return (
+              <div className="character" key={index}>
+                <div
+                  className="image"
+                  style={{
+                    backgroundImage: `url("${character.personalData.picture}")`,
+                  }}
+                ></div>
+                <span className="name">{character.personalData.name}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
     );

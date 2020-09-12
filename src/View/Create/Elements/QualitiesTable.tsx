@@ -66,15 +66,13 @@ export class QualitiesTable extends React.Component<
 
   updateQuality(quality: Quality) {
     if (!quality) return;
-    if (
-      this.props.selectedQualities.findIndex((q) => quality.Name === q.Name) ===
-      -1
-    )
-      return;
-    this.props.updateQualities([
-      ...this.props.selectedQualities.filter((q) => q.Name !== quality.Name),
-      quality,
-    ]);
+    const qualityIndex = this.props.selectedQualities.findIndex(
+      (q) => quality.Name === q.Name
+    );
+    if (qualityIndex === -1) return;
+    let selectedQualities = this.props.selectedQualities;
+    selectedQualities[qualityIndex] = quality;
+    this.props.updateQualities(selectedQualities);
   }
 
   render() {
@@ -86,7 +84,10 @@ export class QualitiesTable extends React.Component<
     return (
       <div className="qualityContainer">
         <h2>Select Qualities</h2>
-        <h6>You can only have 7 selected qualities, not including your race qualities.</h6>
+        <h6>
+          You can only have 7 selected qualities, not including your race
+          qualities.
+        </h6>
         <select
           value={this.state.typeView}
           onChange={(evt) =>
@@ -139,11 +140,6 @@ export class QualitiesTable extends React.Component<
               if (q.LockedValue) lockedVal += q.LockedValue;
               tools.push(
                 <div key={`${q.Name}_MaxValue`}>
-                  <input
-                    type="number"
-                    disabled={true}
-                    value={val + lockedVal}
-                  />
                   <button
                     onClick={() => {
                       if (val + lockedVal > 1 && val + lockedVal > lockedVal)
@@ -155,6 +151,11 @@ export class QualitiesTable extends React.Component<
                   >
                     -
                   </button>
+                  <input
+                    type="number"
+                    disabled={true}
+                    value={val + lockedVal}
+                  />
                   <button
                     onClick={() => {
                       if (val + lockedVal < q.MaxValue)

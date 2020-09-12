@@ -5,12 +5,13 @@ import {
   getSpecialization,
   AttributeTypePlus,
 } from "../../../Model/Create/Skills";
-import { SkillType } from "../../../Model/Create/Quality";
+import { SkillType, Quality } from "../../../Model/Create/Quality";
 import { printpretty } from "../General";
 
 export interface ISkillsTableProps {
   skills: Skill[];
   updateSkills: (skills: Skill[]) => void;
+  qualities: Quality[];
 }
 
 export interface ISkillsTableState {
@@ -50,7 +51,13 @@ export class SkillsTable extends React.Component<
 
   addValue(skill: Skill) {
     if (skill === undefined || skill === null) return;
-    if (skill.value >= 6) return;
+    let maxValue = 6;
+    this.props.qualities.forEach((quality) => {
+      if (quality.Name === "Aptitude" && quality.Skill === skill.name) {
+        maxValue = 7;
+      }
+    });
+    if (skill.value >= maxValue) return;
     skill.value++;
     this.props.updateSkills([
       ...this.props.skills.filter((s) => s.name !== skill.name),
@@ -107,6 +114,14 @@ export class SkillsTable extends React.Component<
                 (s) =>
                   this.props.skills.findIndex((sk) => s.name === sk.name) === -1
               )
+              .filter((s) => {
+                const incompetent = this.props.qualities.find(
+                  (q) => q.Name === "Incompetent"
+                );
+                if (!incompetent) return true;
+                else if (incompetent.Skill !== s.name) return true;
+                else return false;
+              })
               .map((s) => (
                 <div
                   key={s.name}
